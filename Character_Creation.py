@@ -2,6 +2,24 @@
 
 import random as r
 
+print "~~~~ Welome to DnD Next Simple Character Creator ~~~~"
+print
+print "This program will help you create a character quickly " \
+      "to the point where you will need to begin choosing " \
+      "choosing armor, items, skills, etc."
+print
+print "To create a character, simply create a race class and follow " \
+      "the directions."
+print "To do so, type: CharacterName = Race()"
+print "For example: Tim = Dwarf()"
+print
+print "Races are: Dwarf, Elf, Halfling, Human"
+
+
+
+
+
+
 def abilityScores():
     """ () -> list
     Randomly chooses six scores by adding top three d6
@@ -31,7 +49,7 @@ class Character(object):
         
         self.level = level
         print "You can use randomized ability scores: "+str(abilityScores())
-        print "Or simply use the standard array: [8, 10, 12, 13, 14, 15]"
+        print "Or simply use the standard array:      [8, 10, 12, 13, 14, 15]"
         print
         self.str = int(raw_input("Please enter STRENGTH value: "))
         self.dex = int(raw_input("Please enter DEXTERITY value: "))
@@ -78,25 +96,25 @@ class Character(object):
                      'hp':'hit points'}
         if ability == 'str':
             self.str += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'dex':
             self.dex += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'con':
             self.con += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'int':
             self.int += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'wis':
             self.wis += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'cha':
             self.cha += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'hp':
             self.hp += amount
-            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+            print "You added {0} point(s) to the {1} stat.".format(amount,abilities[ability])
         else:
             print "Please use 'str','dex','con','int','wis', or 'cha' as input."
 
@@ -281,6 +299,8 @@ class Dwarf(Character):
 
         self.race = "Dwarf"
         self.classType = ''
+        #classMods for updating hp and other stats when leveling up, as determined by traits
+        self.classMods = [0,0,0,0,0,0,0]
         self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
         print
         while self.subclass not in ['1','2']:
@@ -298,8 +318,9 @@ class Dwarf(Character):
         #if Hill Dwarf
         if self.subclass == '1':
             self.str += 1
-            self.traits['Dwarven Toughness'] = 'Your hit point maximum increases by 1. and it increases by 1 every time you gain a level. Additionally, whenever you roll Hit Dice during a rest, you regain 1 extra hit point for each Hit Die you roll.'
+            self.traits['Dwarven Toughness'] = 'Your hit point maximum increases by 1 and it increases by 1 every time you gain a level. Additionally, whenever you roll Hit Dice during a rest, you regain 1 extra hit point for each Hit Die you roll.'
             self.hp += 1
+            self.classMods[6] += 1
         #if Mountain Dwarf
         elif self.subclass == '2':
             self.wis += 1
@@ -391,7 +412,7 @@ class Halfling(Character):
         Character.__init__(self,level)
         self.race = "Halfling"
         self.classType = ''
-        self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
+        self.subclass = raw_input("Are you (1) Lightfoot or (2) Stout? (input number) ")
         print
         while self.subclass not in ['1','2']:
             self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
