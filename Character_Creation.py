@@ -1,6 +1,6 @@
 import random as r
 
-def ability_scores():
+def abilityScores():
     """ () -> list
     Randomly chooses six scores by adding top three d6
     rolls per score and appending those scores to a
@@ -17,8 +17,10 @@ def ability_scores():
         scores_list.append(temp_list[1]+temp_list[2]+temp_list[3])
     scores_list.sort()
     return scores_list
-                            
-def choose_class():
+
+
+            
+def chooseClass():
     """
     Asks player to choose a class for his/her character.
     """
@@ -28,7 +30,7 @@ class Character(object):
     def __init__(self,level):
         
         self.level = level
-        print "You can use randomized ability scores: "+str(ability_scores())
+        print "You can use randomized ability scores: "+str(abilityScores())
         print "Or simply use the standard array: [8, 10, 12, 13, 14, 15]"
         print
         self.str = int(raw_input("Please enter STRENGTH value: "))
@@ -63,7 +65,7 @@ class Character(object):
                                                                       mods[4],
                                                                       self.cha,
                                                                       mods[5])
-        return
+        
 
     def updateScore(self,ability,amount):
         """
@@ -93,7 +95,32 @@ class Character(object):
         else:
             print "Please use 'str','dex','con','int','wis', or 'cha' as input."
 
-        return
+        
+
+    def stealthUpdate(self,ability,amount):
+        """
+        Use when needing to stealthily update stats.
+        """
+        abilities = {'str':'strength','dex':'dexterity',
+                     'con':'constitution','int':'intelligence',
+                     'wis':'wisdom','cha':'charisma'}
+        if ability == 'str':
+            self.str += amount
+        elif ability == 'dex':
+            self.dex += amount
+            
+        elif ability == 'con':
+            self.con += amount
+            
+        elif ability == 'int':
+            self.int += amount
+            
+        elif ability == 'wis':
+            self.wis += amount
+            
+        elif ability == 'cha':
+            self.cha += amount
+            
         
     
         
@@ -172,4 +199,89 @@ class Elf(Character):
             print "  ~~"+i+"~~"
             print"    "+str(self.traits[i])
         print
-        return "End of Dwarf"
+        return "End of Elf"
+
+class Halfling(Character):
+
+    def __init__(self,level):
+
+        Character.__init__(self,level)
+
+        self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
+        self.traits = {"Size":"Small",
+                       "Speed": 25,
+                       "Languages":"Common, Halfling",
+                       "Halfling Weapon Training":"When you attack with a dagger, a short sword, or a sling with which you have proficiency, the damage die for that weapon increases by one step: from d4 to d6, or d6 to d8.",
+                       "Lucky": "Twice per day, when you make an attack roll, check, or saving throw and get a result you dislike, you can reroll the die and use either result. If you have advantage or disadvantage on the roll, you reroll only one of the dice.",
+                       "Halfling Nimbleness": "You can move through the spaces of hostile creatures that are larger than you.",
+                       
+                       }
+        
+        if self.subclass == '1':
+            self.dex += 1
+            self.traits['Naturally Stealthy'] = "You can attempt to hide even when you are obscurred only by a creature that is one size category larger than you."
+            
+        elif self.subclass == '2':
+            self.cha += 1
+            self.traits['Fearless'] = 'When you are frightened, you can take an action to end the frightening effect on yourself.'
+
+    def __str__(self):
+        print "Level: "+str(self.level)
+        self.getAbilityScores()
+        print
+        print "~~~~~~~~~Traits~~~~~~~~~ "
+        for i in self.traits:
+            print
+            print "  ~~"+i+"~~"
+            print"    "+str(self.traits[i])
+        print
+        return "End of Halfling"
+
+class Human(Character):
+
+    def __init__(self,level):
+
+        Character.__init__(self,level)
+
+        self.traits = {"Size":"Medium",
+                       "Speed": 30,
+                       "Languages":"Common"
+                                               
+                       }
+         
+    
+
+        self.abilityScoreAdjustment()
+
+    def abilityScoreAdjustment(self):
+        """
+        This function is only called for Human races to calculate their
+        upgraded ability scores as per called by their race.
+        """
+        #Asks which ability score to add 2 to (Human trait)
+        score_plus_two = raw_input("Which Ability Score would you like to go up by 2? \n Pleast choose: str,dex,con,int,wis,cha ")
+
+        #A list of the ability scores
+        abilities_list = ['str','dex','con','int','wis','cha']
+
+        #Updates score for chosen ability by 2 then removes it from list
+        self.stealthUpdate(score_plus_two,2)
+        abilities_list.pop(abilities_list.index(score_plus_two))
+
+        #Updates all remaining scores by 1
+        for i in abilities_list:
+            self.stealthUpdate(i,1)
+ 
+        
+    def __str__(self):
+        print "Level: "+str(self.level)
+        self.getAbilityScores()
+        print
+        print "~~~~~~~~~Traits~~~~~~~~~ "
+        for i in self.traits:
+            print
+            print "  ~~"+i+"~~"
+            print"    "+str(self.traits[i])
+        print
+        return "End of Human"
+
