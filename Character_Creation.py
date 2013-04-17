@@ -1,4 +1,4 @@
-### Character information up to date for version 4/11/13 ###
+### Character information up to date for DnD Next version 4/11/13 ###
 
 import random as r
 
@@ -128,14 +128,17 @@ class Character(object):
         """
 
         #Ask which class he/she would like
-        chosen_class = raw_input("Which class would you like? Please choose from:\nBarbarian, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Wizard " ) 
-        chosen_class = chosen_class.lower()
+        chosen_class = raw_input("Which class would you like? Please choose from:\nBarbarian, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Wizard " ).lower() 
+        while chosen_class not in ['barbarian','cleric','druid','fighter','monk','paladin','ranger','rogue','wizard']:
+            chosen_class = raw_input("\nIncorrect input\n\nWhich class would you like? Please choose from:\nBarbarian, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Wizard " ).lower()           
         print
 
+        self.classType = chosen_class.title()
         #Dictionary of classes with values in a list (ex. [str,dex,con,int,wis,cha,hp])
         classes = {'barbarian': [0,0,0,0,0,0,self.con+12],
                    'cleric':[0,0,0,0,0,0,self.con+8],
                    'druid':[0,0,0,0,0,0,self.con+8],
+                   'fighter':[0,0,0,0,0,0,self.con+10],
                    'monk':[0,0,0,0,0,0,self.con+8],
                    'paladin':[0,0,0,0,0,0,self.con+10],
                    'ranger':[0,0,0,0,0,0,self.con+10],
@@ -145,68 +148,104 @@ class Character(object):
 
         #Class specific conditional statements
         if chosen_class == 'barbarian':
-            barb_choice = int(raw_input('Would you like to boost (1) Strength or (2) Constitution? '))
+            barb_choice = raw_input('Would you like to boost (1) Strength or (2) Constitution? ')
             print
-            if barb_choice == 1:
+            while barb_choice not in ['1','2']:
+                barb_choice = raw_input('Would you like to boost (1) Strength or (2) Constitution? ')
+                print
+            if barb_choice == '1':
                 classes['barbarian'][0] = 1
-            elif barb_choice == 2:
+            elif barb_choice == '2':
                 classes['barbarian'][2] = 1
         elif chosen_class == 'cleric':
-            clerc_choice = int(raw_input('Would you like to boost (1) Wisdom, (2) Strength, or (3) Constitution? '))
+            clerc_choice = raw_input('Would you like to boost (1) Wisdom, (2) Strength, or (3) Constitution? ')
             print
-            if clerc_choice == 1:
+            while clerc_choice not in ['1','2','3']:
+                clerc_choice = raw_input('Would you like to boost (1) Wisdom, (2) Strength, or (3) Constitution? ')
+                print
+            if clerc_choice == '1':
                 classes['cleric'][4] = 1
-            elif clerc_choice == 2:
+            elif clerc_choice == '2':
                 classes['cleric'][0] = 1
-            elif clerc_choice == 3:
+            elif clerc_choice == '3':
                 classes['cleric'][2] = 1
         elif chosen_class == 'druid':
-            druid_choice = int(raw_input('Would you like to boost (1) Wisdom or (2) Constitution? '))
+            druid_choice = raw_input('Would you like to boost (1) Wisdom or (2) Constitution? ')
             print
-            if druid_choice == 1:
+            while druid_choice not in ['1','2']:
+                druid_choice = raw_input('Would you like to boost (1) Wisdom or (2) Constitution? ')
+                print
+            if druid_choice == '1':
                 classes['druid'][4] = 1
-            elif druid_choice == 2:
+            elif druid_choice == '2':
                 classes['druid'][2] = 1
-        elif chosen_class == 'monk':
-            monk_choice = int(raw_input("Would you like to boost (1) Wisdom or (2) Dexterity? "))
+        elif chosen_class == 'fighter':
+            fight_choice = raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Constitution? ')
             print
-            if monk_choice == 1:
+            while fight_choice not in ['1','2','3']:
+                fight_choice = raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Constitution? ')
+                print
+            if fight_choice == '1':
+                classes['fighter'][0] = 1
+            elif fight_choice == '2':
+                classes['fighter'][1] = 1
+            elif fight_choice == '3':
+                classes['fighter'][2] = 1            
+        elif chosen_class == 'monk':
+            monk_choice = raw_input("Would you like to boost (1) Wisdom or (2) Dexterity? ")
+            print
+            while monk_choice not in ['1','2']:
+                monk_choice = raw_input("Would you like to boost (1) Wisdom or (2) Dexterity? ")
+                print
+            if monk_choice == '1':
                 classes['monk'][4] = 1
-            elif monk_choice == 2:
+            elif monk_choice == '2':
                 classes['monk'][1] = 1
         elif chosen_class == 'paladin':
-            pal_choice = int(raw_input('Would you like to boost (1) Strength, (2) Constitution, or (3) Charisma? '))
+            pal_choice = raw_input('Would you like to boost (1) Strength, (2) Constitution, or (3) Charisma? ')
             print
-            if pal_choice == 1:
+            while pal_choice not in ['1','2','3']:
+                pal_choice = raw_input('Would you like to boost (1) Strength, (2) Constitution, or (3) Charisma? ')
+                print
+            if pal_choice == '1':
                 classes['paladin'][0] = 1
-            elif pal_choice == 2:
+            elif pal_choice == '2':
                 classes['paladin'][2] = 1
-            elif pal_choice == 3:
+            elif pal_choice == '3':
                 classes['paladin'][5] = 1
         elif chosen_class == 'ranger':
-            rang_choice = int(raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Constitution? '))
+            rang_choice = raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Constitution? ')
             print
-            if rang_choice == 1:
+            while rang_choice not in ['1','2','3']:
+                rang_choice = raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Constitution? ')
+                print
+            if rang_choice == '1':
                 classes['ranger'][0] = 1
-            elif rang_choice == 2:
+            elif rang_choice == '2':
                 classes['ranger'][1] = 1
-            elif rang_choice == 3:
+            elif rang_choice == '3':
                 classes['ranger'][2] = 1
         elif chosen_class == 'rogue':
-            rog_choice = int(raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Intelligence? '))
+            rog_choice = raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Intelligence? ')
             print
-            if rog_choice == 1:
+            while rog_choice not in ['1','2','3']:
+                rog_choice = raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Intelligence? ')
+                print
+            if rog_choice == '1':
                 classes['rogue'][0] = 1
-            elif rog_choice == 2:
+            elif rog_choice == '2':
                 classes['rogue'][1] = 1
-            elif rog_choice == 3:
+            elif rog_choice == '3':
                 classes['rogue'][3] = 1
         elif chosen_class == 'wizard':
-            wiz_choice = int(raw_input('Would you like to boost (1) Intelligence or (2) Constitution? '))
+            wiz_choice = raw_input('Would you like to boost (1) Intelligence or (2) Constitution? ')
             print
-            if wiz_choice == 1:
+            while wiz_choice not in ['1','2']:
+                wiz_choice = raw_input('Would you like to boost (1) Intelligence or (2) Constitution? ')
+                print
+            if wiz_choice == '1':
                 classes['wizard'][3] = 1
-            elif wiz_choice == 2:
+            elif wiz_choice == '2':
                 classes['wizard'][2] = 1
         
             
@@ -241,8 +280,13 @@ class Dwarf(Character):
 
         Character.__init__(self,level)
 
+        self.race = "Dwarf"
+        self.classType = ''
         self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
         print
+        while self.subclass not in ['1','2']:
+            self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
+            print            
         self.traits = {"Size":"Medium",
                        "Speed":"25 feet. Your speed is not reduced by wearing heavy armor with which you have proficiency or for carrying a heavy load.",
                        "Languages":"Common, Dwarven",
@@ -268,24 +312,33 @@ class Dwarf(Character):
         print self.__str__()
         
     def __str__(self):
-        print "Level: "+str(self.level)
+        print
+        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print
+        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
         self.getAbilityScores()
         print
-        print "~~~~~~~~~Traits~~~~~~~~~ "
+        print "~~~~~~~~~ Traits ~~~~~~~~~ "
         for i in self.traits:
             print
             print "  ~~"+i+"~~"
             print"    "+str(self.traits[i])
         print
-        return "End of Dwarf"
+        return "End of "+self.race
 
 class Elf(Character):
 
     def __init__(self,level):
 
         Character.__init__(self,level)
- 
+
+        self.race = "Elf"
+        self.classType = ''
         self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
+        print
+        while self.subclass not in ['1','2']:
+            self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
+            print
         self.traits = {"Size":"Medium",
                        "Languages":"Common, Elf",
                        "Speed": "30 Feet",
@@ -318,24 +371,32 @@ class Elf(Character):
         print self.__str__()
         
     def __str__(self):
-        print "Level: "+str(self.level)
+        print
+        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print
+        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
         self.getAbilityScores()
         print
-        print "~~~~~~~~~Traits~~~~~~~~~ "
+        print "~~~~~~~~~ Traits ~~~~~~~~~ "
         for i in self.traits:
             print
             print "  ~~"+i+"~~"
             print"    "+str(self.traits[i])
         print
-        return "End of Elf"
+        return "End of "+self.race
 
 class Halfling(Character):
 
     def __init__(self,level):
 
         Character.__init__(self,level)
-
+        self.race = "Halfling"
+        self.classType = ''
         self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
+        print
+        while self.subclass not in ['1','2']:
+            self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
+            print
         self.traits = {"Size":"Small",
                        "Speed": "25 feet",
                        "Ability Score Adjustment": "Your starting Dexterity score increases by 1.",
@@ -363,23 +424,27 @@ class Halfling(Character):
         print self.__str__()
         
     def __str__(self):
-        print "Level: "+str(self.level)
+        print
+        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print
+        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
         self.getAbilityScores()
         print
-        print "~~~~~~~~~Traits~~~~~~~~~ "
+        print "~~~~~~~~~ Traits ~~~~~~~~~ "
         for i in self.traits:
             print
             print "  ~~"+i+"~~"
             print"    "+str(self.traits[i])
         print
-        return "End of Halfling"
+        return "End of "+self.race
 
 class Human(Character):
 
     def __init__(self,level):
 
         Character.__init__(self,level)
-
+        self.race = "Human"
+        self.classType = ''
         self.traits = {"Size":"Medium",
                        "Speed": "30 feet",
                        "Languages":"Common",
@@ -419,14 +484,17 @@ class Human(Character):
      '''
         
     def __str__(self):
-        print "Level: "+str(self.level)
+        print
+        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print
+        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
         self.getAbilityScores()
         print
-        print "~~~~~~~~~Traits~~~~~~~~~ "
+        print "~~~~~~~~~ Traits ~~~~~~~~~ "
         for i in self.traits:
             print
             print "  ~~"+i+"~~"
             print"    "+str(self.traits[i])
         print
-        return "End of Human"
+        return "End of "+self.race
 
