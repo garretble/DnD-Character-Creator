@@ -105,7 +105,20 @@ class Character(object):
                                                                       mods[4],
                                                                       self.cha,
                                                                       mods[5])
-        
+        return "STR: {0} ({1}) \nDEX: {2} ({3})\nCON: {4} ({5})".format(self.str,
+                                                                       mods[0],
+                                                                       self.dex,
+                                                                       mods[1],
+                                                                       self.con,
+                                                                       mods[2])+"\n" \
+                "INT: {0} ({1})\nWIS: {2} ({3})\nCHA: {4} ({5})".format(self.int,
+                                                                      mods[3],
+                                                                      self.wis,
+                                                                      mods[4],
+                                                                      self.cha,
+                                                                      mods[5])
+                
+                                                                    
 
     def updateScore(self,ability,amount):
         """ (str,int) -> Nonetype
@@ -354,6 +367,22 @@ class Character(object):
 
         if self.level > 1:
             update_hp_for_higher_level(chosen_class,self.level)
+
+    def save(self,fileName):
+        """
+        Saves a character to a .txt file
+        """
+
+        new_file = open(str(fileName)+".txt","w")
+        new_file.write("~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
+        new_file.write("Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+"\n")
+        new_file.write(str(self.getAbilityScores()))
+        new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
+        for i in self.traits:
+            new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
+                             
+        
+        new_file.close()
             
     def __str__(self):
         print
