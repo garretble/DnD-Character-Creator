@@ -22,19 +22,7 @@ def abilityScores():
 
 
             
-def chooseClass():
-    """
-    Asks player to choose a class for his/her character.
-    """
 
-    #Ask which class he/she would like
-    
-    #create list based on that choice to update stats [str,dex,con,int,wis,cha,hp]
-    stats_list = []
-    
-
-    #modify hp if character is starting out higher than level 1
-    #if self.level > 1:
         
     
 class Character(object):
@@ -81,12 +69,13 @@ class Character(object):
         
 
     def updateScore(self,ability,amount):
-        """
+        """ (str,int) -> Nonetype
         Use to update an ability score manually.
         """
         abilities = {'str':'strength','dex':'dexterity',
                      'con':'constitution','int':'intelligence',
-                     'wis':'wisdom','cha':'charisma'}
+                     'wis':'wisdom','cha':'charisma',
+                     'hp':'hit points'}
         if ability == 'str':
             self.str += amount
             print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
@@ -104,6 +93,9 @@ class Character(object):
             print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
         elif ability == 'cha':
             self.cha += amount
+            print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
+        elif ability == 'hp':
+            self.hp += amount
             print "You added {0} points to the {1} stat.".format(amount,abilities[ability])
         else:
             print "Please use 'str','dex','con','int','wis', or 'cha' as input."
@@ -127,6 +119,117 @@ class Character(object):
             self.wis += amount
         elif ability == 'cha':
             self.cha += amount
+        elif ability == 'hp':
+            self.hp += amount
+
+    def chooseClass(self):
+        """
+        Asks player to choose a class for his/her character. Called in each character class.
+        """
+
+        #Ask which class he/she would like
+        chosen_class = raw_input("Which class would you like? Please choose from:\nBarbarian, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Wizard " ) 
+        chosen_class = chosen_class.lower()
+        print
+
+        #Dictionary of classes with values in a list (ex. [str,dex,con,int,wis,cha,hp])
+        classes = {'barbarian': [0,0,0,0,0,0,self.con+12],
+                   'cleric':[0,0,0,0,0,0,self.con+8],
+                   'druid':[0,0,0,0,0,0,self.con+8],
+                   'monk':[0,0,0,0,0,0,self.con+8],
+                   'paladin':[0,0,0,0,0,0,self.con+10],
+                   'ranger':[0,0,0,0,0,0,self.con+10],
+                   'rogue':[0,0,0,0,0,0,self.con+6],
+                   'wizard':[0,0,0,0,0,0,self.con+6]
+                   }
+
+        #Class specific conditional statements
+        if chosen_class == 'barbarian':
+            barb_choice = int(raw_input('Would you like to boost (1) Strength or (2) Constitution? '))
+            print
+            if barb_choice == 1:
+                classes['barbarian'][0] = 1
+            elif barb_choice == 2:
+                classes['barbarian'][2] = 1
+        elif chosen_class == 'cleric':
+            clerc_choice = int(raw_input('Would you like to boost (1) Wisdom, (2) Strength, or (3) Constitution? '))
+            print
+            if clerc_choice == 1:
+                classes['cleric'][4] = 1
+            elif clerc_choice == 2:
+                classes['cleric'][0] = 1
+            elif clerc_choice == 3:
+                classes['cleric'][2] = 1
+        elif chosen_class == 'druid':
+            druid_choice = int(raw_input('Would you like to boost (1) Wisdom or (2) Constitution? '))
+            print
+            if druid_choice == 1:
+                classes['druid'][4] = 1
+            elif druid_choice == 2:
+                classes['druid'][2] = 1
+        elif chosen_class == 'monk':
+            monk_choice = int(raw_input("Would you like to boost (1) Wisdom or (2) Dexterity? "))
+            print
+            if monk_choice == 1:
+                classes['monk'][4] = 1
+            elif monk_choice == 2:
+                classes['monk'][1] = 1
+        elif chosen_class == 'paladin':
+            pal_choice = int(raw_input('Would you like to boost (1) Strength, (2) Constitution, or (3) Charisma? '))
+            print
+            if pal_choice == 1:
+                classes['paladin'][0] = 1
+            elif pal_choice == 2:
+                classes['paladin'][2] = 1
+            elif pal_choice == 3:
+                classes['paladin'][5] = 1
+        elif chosen_class == 'ranger':
+            rang_choice = int(raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Constitution? '))
+            print
+            if rang_choice == 1:
+                classes['ranger'][0] = 1
+            elif rang_choice == 2:
+                classes['ranger'][1] = 1
+            elif rang_choice == 3:
+                classes['ranger'][2] = 1
+        elif chosen_class == 'rogue':
+            rog_choice = int(raw_input('Would you like to boost (1) Strength, (2) Dexterity, or (3) Intelligence? '))
+            print
+            if rog_choice == 1:
+                classes['rogue'][0] = 1
+            elif rog_choice == 2:
+                classes['rogue'][1] = 1
+            elif rog_choice == 3:
+                classes['rogue'][3] = 1
+        elif chosen_class == 'wizard':
+            wiz_choice = int(raw_input('Would you like to boost (1) Intelligence or (2) Constitution? '))
+            print
+            if wiz_choice == 1:
+                classes['wizard'][3] = 1
+            elif wiz_choice == 2:
+                classes['wizard'][2] = 1
+        
+            
+            
+                
+        
+        #Update base stats
+        
+        stats_list = ['str','dex','con','int','wis','cha','hp']
+        for i in range(len(stats_list)):
+            self.stealthUpdate(stats_list[i],classes[chosen_class][i])
+            
+            
+        
+        
+
+        #modify hp if character is starting out higher than level 1
+        #To be finished at a later time
+        '''def update_hp_for_higher_level(chosen_class,level):
+            if chosen_class == 'barbarian':
+                hp_count = 0
+                for i in range(self.level-1):
+                    hp_count += r.random(1,12) + self.con'''
             
         
     
@@ -139,6 +242,7 @@ class Dwarf(Character):
         Character.__init__(self,level)
 
         self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
+        print
         self.traits = {"Size":"Medium",
                        "Speed":"25 feet. Your speed is not reduced by wearing heavy armor with which you have proficiency or for carrying a heavy load.",
                        "Languages":"Common, Dwarven",
@@ -158,6 +262,11 @@ class Dwarf(Character):
             self.wis += 1
             self.traits['Armor Mastery'] = 'You are proficient with light and medium armor. While wearing medium or heavy armor, you gain a +1 bonus to Armor Class.'
 
+        #Choose a class
+        self.chooseClass()
+
+        print self.__str__()
+        
     def __str__(self):
         print "Level: "+str(self.level)
         self.getAbilityScores()
@@ -203,6 +312,11 @@ class Elf(Character):
             self.traits['Fleet of Foot'] = "Your speed increases by 5 feet."
             self.traits['Mask of the Wild'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
 
+        #Choose a class
+        self.chooseClass()
+
+        print self.__str__()
+        
     def __str__(self):
         print "Level: "+str(self.level)
         self.getAbilityScores()
@@ -243,6 +357,11 @@ class Halfling(Character):
             self.con += 1
             self.traits['Stout Resilience'] = 'You have advantage on saving throws against poison, and you have resistance against poison damage.'
 
+        #Choose a class
+        self.chooseClass()
+
+        print self.__str__()
+        
     def __str__(self):
         print "Level: "+str(self.level)
         self.getAbilityScores()
@@ -272,6 +391,11 @@ class Human(Character):
         #Add 1 to each ability score as guided by trait
         for i in abilities_list:
             self.stealthUpdate(i,1)
+
+        #Choose a class
+        self.chooseClass()
+
+        print self.__str__()
         
     '''
     def abilityScoreAdjustment(self):
