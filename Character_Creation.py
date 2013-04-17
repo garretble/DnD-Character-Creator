@@ -8,10 +8,11 @@ print "This program will help you create a character quickly " \
       "to the point where you will need to begin choosing " \
       "choosing armor, items, skills, etc."
 print
-print "To create a character, simply create a race class and follow " \
+print "To create a character, simply create a race instance and follow " \
       "the directions."
-print "To do so, type: CharacterName = Race()"
-print "For example: Tim = Dwarf()"
+print "To do so, type: CharacterName = Race(Level)"
+print "For example: Tim = Dwarf(4)"
+print "Note: leaving the argument blank (e.g. Dwarf() ) will default to Level 1"
 print
 print "Races are: Dwarf, Elf, Halfling, Human"
 
@@ -59,6 +60,11 @@ class Character(object):
         self.cha = int(raw_input("Please enter CHARISMA value: "))
         self.hp = 0
         print
+
+        #classMods for updating hp and other stats when leveling up, as determined by traits
+        #or class specific characteristics
+        #The list represents [str,dex,con,int,wis,cha,hp]
+        self.classMods = [0,0,0,0,0,0,0]
         
     
         
@@ -280,12 +286,54 @@ class Character(object):
             
 
         #modify hp if character is starting out higher than level 1
-        #To be finished at a later time
-        '''def update_hp_for_higher_level(chosen_class,level):
-            if chosen_class == 'barbarian':
-                hp_count = 0
-                for i in range(self.level-1):
-                    hp_count += r.random(1,12) + self.con'''
+        def update_hp_for_higher_level(chosen_class,level):
+            def upgradedAbilityAt4(level):
+                if level % 4 == 0:
+                    upgraded_ability = raw_input("Level "+str(level)+"! Which two abilities would you like to upgrade? (Adds +1 to ability)\nPlease input two from str/dex/con/int/wis/cha with a space in between. (ex: cha dex) ").split(' ')
+                    print
+                    for i in upgraded_ability:
+                        self.stealthUpdate(i,1)
+                        
+            if chosen_class == 'barbarian':                
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,12) + self.con
+            elif chosen_class == 'cleric':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,8) + self.con
+            elif chosen_class == 'druid':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,8) + self.con
+            elif chosen_class == 'fighter':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,10) + self.con
+            elif chosen_class == 'monk':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,8) + self.con
+            elif chosen_class == 'paladin':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,10) + self.con
+            elif chosen_class == 'ranger':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,10) + self.con
+            elif chosen_class == 'rogue':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,6) + self.con
+            elif chosen_class == 'wizard':
+                for i in range(2,self.level+1):
+                    upgradedAbilityAt4(i)
+                    self.hp += r.randint(1,6) + self.con
+                    
+
+        if self.level > 1:
+            update_hp_for_higher_level(chosen_class,self.level)
             
         
     
@@ -299,8 +347,7 @@ class Dwarf(Character):
 
         self.race = "Dwarf"
         self.classType = ''
-        #classMods for updating hp and other stats when leveling up, as determined by traits
-        self.classMods = [0,0,0,0,0,0,0]
+        
         self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
         print
         while self.subclass not in ['1','2']:
