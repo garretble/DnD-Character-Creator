@@ -133,8 +133,10 @@ class Character(object):
             chosen_class = raw_input("\nIncorrect input\n\nWhich class would you like? Please choose from:\nBarbarian, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Wizard " ).lower()           
         print
 
+        #Adds character class to Class object for use in print statements
         self.classType = chosen_class.title()
-        #Dictionary of classes with values in a list (ex. [str,dex,con,int,wis,cha,hp])
+        
+        #Dictionary of classes with 0 values in a list (ex. [str,dex,con,int,wis,cha,hp])
         classes = {'barbarian': [0,0,0,0,0,0,self.con+12],
                    'cleric':[0,0,0,0,0,0,self.con+8],
                    'druid':[0,0,0,0,0,0,self.con+8],
@@ -146,7 +148,8 @@ class Character(object):
                    'wizard':[0,0,0,0,0,0,self.con+6]
                    }
 
-        #Class specific conditional statements
+        #Class specific conditional statements. These update the various ability scores
+        #in the classes variable
         if chosen_class == 'barbarian':
             barb_choice = raw_input('Would you like to boost (1) Strength or (2) Constitution? ')
             print
@@ -248,19 +251,15 @@ class Character(object):
             elif wiz_choice == '2':
                 classes['wizard'][2] = 1
         
-            
-            
-                
-        
         #Update base stats
-        
+
+        #A basic list full of the types of ability scores
         stats_list = ['str','dex','con','int','wis','cha','hp']
+        #loops through the stats_list and adds all numbers to character's
+        #starting stats
         for i in range(len(stats_list)):
             self.stealthUpdate(stats_list[i],classes[chosen_class][i])
             
-            
-        
-        
 
         #modify hp if character is starting out higher than level 1
         #To be finished at a later time
@@ -276,7 +275,7 @@ class Character(object):
         
 class Dwarf(Character):
 
-    def __init__(self,level):
+    def __init__(self,level=1):
 
         Character.__init__(self,level)
 
@@ -328,7 +327,7 @@ class Dwarf(Character):
 
 class Elf(Character):
 
-    def __init__(self,level):
+    def __init__(self,level=1):
 
         Character.__init__(self,level)
 
@@ -387,7 +386,7 @@ class Elf(Character):
 
 class Halfling(Character):
 
-    def __init__(self,level):
+    def __init__(self,level=1):
 
         Character.__init__(self,level)
         self.race = "Halfling"
@@ -440,7 +439,7 @@ class Halfling(Character):
 
 class Human(Character):
 
-    def __init__(self,level):
+    def __init__(self,level=1):
 
         Character.__init__(self,level)
         self.race = "Human"
