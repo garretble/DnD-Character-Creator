@@ -72,7 +72,16 @@ class Character(object):
                    11: 77000, 12: 96000, 13: 120000, 14: 150000, 15: 190000,
                    16: 230000, 17: 280000, 18: 330000, 19: 390000, 20: 460000}
         self.xp = xp_dict[self.level]
-    
+
+        self.hit_dice = {"Barbarian": "d12",
+                    "Cleric": "d8",
+                    "Druid":"d8",
+                    "Fighter":"d10",
+                    "Monk":"d8",
+                    "Paladin":"d10",
+                    "Ranger":"d10",
+                    "Rogue":"d6",
+                    "Wizard":"d6"}
         
     def getAbilityScores(self):
         """
@@ -350,7 +359,7 @@ class Character(object):
         print
         print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
         print
-        print "Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)
+        print "Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])
         self.getAbilityScores()
         print
         print "~~~~~~~~~ Traits ~~~~~~~~~ "
