@@ -27,3 +27,5 @@ character.save(fileName)
 --------------------------------
 Saves your character to a .txt file in the same directory where the Character Creator file
 resides. Currently, the file will overwrite any file in that directory of the same name.
+
+ex. Narlbuck.sove("Narlbuck_the_Dwarf") gives a file named "Narlbuck_the_Dwarf.txt"
