@@ -1,3 +1,5 @@
+### Character information up to date for version 4/11/13 ###
+
 import random as r
 
 def abilityScores():
@@ -24,6 +26,16 @@ def chooseClass():
     """
     Asks player to choose a class for his/her character.
     """
+
+    #Ask which class he/she would like
+    
+    #create list based on that choice to update stats [str,dex,con,int,wis,cha,hp]
+    stats_list = []
+    
+
+    #modify hp if character is starting out higher than level 1
+    #if self.level > 1:
+        
     
 class Character(object):
 
@@ -39,6 +51,7 @@ class Character(object):
         self.int = int(raw_input("Please enter INTELLIGENCE value: "))
         self.wis = int(raw_input("Please enter WISDOM value: "))
         self.cha = int(raw_input("Please enter CHARISMA value: "))
+        self.hp = 0
         print
         
     
@@ -101,23 +114,17 @@ class Character(object):
         """
         Use when needing to stealthily update stats.
         """
-        abilities = {'str':'strength','dex':'dexterity',
-                     'con':'constitution','int':'intelligence',
-                     'wis':'wisdom','cha':'charisma'}
+ 
         if ability == 'str':
             self.str += amount
         elif ability == 'dex':
-            self.dex += amount
-            
+            self.dex += amount    
         elif ability == 'con':
             self.con += amount
-            
         elif ability == 'int':
             self.int += amount
-            
         elif ability == 'wis':
             self.wis += amount
-            
         elif ability == 'cha':
             self.cha += amount
             
@@ -133,21 +140,22 @@ class Dwarf(Character):
 
         self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
         self.traits = {"Size":"Medium",
-                       "Speed":25,
+                       "Speed":"25 feet. Your speed is not reduced by wearing heavy armor with which you have proficiency or for carrying a heavy load.",
                        "Languages":"Common, Dwarven",
-                       "Low-Light Vision":"If there is no light within 30 feet of you, you treat shadows in that radius as normal light, and you treat darkness in that radius as shadows.",
-                       "Dwarven Resilience":"You are immune to damage and other effects from poison.",
-                       "Dwarven Weapon Training":"When you attack with an axe or a hammer with which you are proficient, the damage die for that weapon increases by one step: from d4 to d6, d6 to d8, d8 to d10, d10 to d12, and d12 to 2d6",
-                       "Stonecunning":"While underground, you know your approximate depth and how to retrace your path. You can identify the age of visible stonework and make a reasonable guess as to the culture responsible for its construction.",
+                       "Darkvision":"You treat darkness within 60 feet of you as dim light. When you do so, your vision is in  black and white.",
+                       "Dwarven Resilience":"You have advantage on saving throws against poison, and you have resistance against poison damage.",
+                       "Dwarven Weapon Training":"You are proficient with the battleaxe, handaxe, throwing hammer, and warhammer.",
+                       "Stonecunning":"While you are underground, you have advantage on all Wisdom checks to listen and spot, and you roughly know your depth beneath the surface.\n  You also know the approximate age and origin of worked stone you inspect.",
                        }
         
-        
+        #if Hill Dwarf
         if self.subclass == '1':
             self.str += 1
-            self.traits['Dwarven Toughness'] = 'All your Hit Dice increase by one step: from d4 to d6, d6 to d8, d8 to d10, d10 to d12, and d12 to 2d6. At 1st level, you gain 1 extra hit point. Whenever you gain a level, you similarly increase the die rolled to determine how many hit points you gain (or simply gain 1 extra hit point per level).'
-            
+            self.traits['Dwarven Toughness'] = 'Your hit point maximum increases by 1. and it increases by 1 every time you gain a level. Additionally, whenever you roll Hit Dice during a rest, you regain 1 extra hit point for each Hit Die you roll.'
+            self.hp += 1
+        #if Mountain Dwarf
         elif self.subclass == '2':
-            self.cha += 1
+            self.wis += 1
             self.traits['Armor Mastery'] = 'You are proficient with light and medium armor. While wearing medium or heavy armor, you gain a +1 bonus to Armor Class.'
 
     def __str__(self):
@@ -167,27 +175,33 @@ class Elf(Character):
     def __init__(self,level):
 
         Character.__init__(self,level)
-
+ 
         self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
         self.traits = {"Size":"Medium",
                        "Languages":"Common, Elf",
-                       "Low-Light Vision":"If there is no light within 30 feet of you, you treat shadows in that radius as normal light, and you treat darkness in that radius as shadows.",
-                       "Elf Weapon Training":"When you attack with a longsword, a shortbow, or a longbow with which you have proficiency, the damage die for that weapon increases by one step: from d6 to d8, or d8 to d10.",
-                       "Keen Senses": "You have advantage on checks made to listen to, search for, or notice something.",
+                       "Speed": "30 Feet",
+                       "Ability Score Adjustment":"You starting Dexterity score increases by 1.",
+                       "Low-Light Vision":"You can see in dim light as well as you do in bright light.",
+                       "Elf Weapon Training":"You are proficient with a long sword, short sword, shortbow, and longbow.",
+                       "Keen Senses": "You have advantage on all Wisdom checks to listen and spot.",
                        "Free Spirit": "You are immune to the charmed condition and to any effect that would put you to sleep.",
                        "Trance": 'Elves do not need to sleep. Instead, they meditate deeply for 4 hours a day. (The Common word for such meditation is "trance.") While meditating, you can dream after a fashion; such dreams are actually mental excercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.',
                        
                        }
-        
+        #Added dex due to trait
+        self.dex += 1
+
+        #if High Elf
         if self.subclass == '1':
             self.int += 1
-            self.traits['Speed'] = 30
-            self.traits['Cantrip'] = "Choose one minor spell from the wizard's spell list. You know and can cast this spell. Intelligence is your magic ability for it."
-            
+            self.traits['Extra Language'] = "You can speak, read, and write one extra language of your choice."
+            self.traits['Cantrip'] = "You know one cantrip of your choice from the wizard's cantrip list. Intelligence is your magic ability for it."
+        #if Wood Elf    
         elif self.subclass == '2':
-            self.dex += 1
-            self.traits['Speed'] = 35
-            self.traits['Wood Elf Grace'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
+            self.wis += 1
+            self.traits['Speed'] = "35 Feet"
+            self.traits['Fleet of Foot'] = "Your speed increases by 5 feet."
+            self.traits['Mask of the Wild'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
 
     def __str__(self):
         print "Level: "+str(self.level)
@@ -209,21 +223,25 @@ class Halfling(Character):
 
         self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
         self.traits = {"Size":"Small",
-                       "Speed": 25,
+                       "Speed": "25 feet",
+                       "Ability Score Adjustment": "Your starting Dexterity score increases by 1.",
                        "Languages":"Common, Halfling",
-                       "Halfling Weapon Training":"When you attack with a dagger, a short sword, or a sling with which you have proficiency, the damage die for that weapon increases by one step: from d4 to d6, or d6 to d8.",
-                       "Lucky": "Twice per day, when you make an attack roll, check, or saving throw and get a result you dislike, you can reroll the die and use either result. If you have advantage or disadvantage on the roll, you reroll only one of the dice.",
-                       "Halfling Nimbleness": "You can move through the spaces of hostile creatures that are larger than you.",
-                       
+                       "Fearless":"You have advantage on saving throws against being frightened",
+                       "Halfling Nimbleness":"You can move through the space of any creature that is of a size larger and yours.",
+                       "Lucky":"When you roll a natural 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
                        }
-        
+
+        #Added dex due to trait
+        self.dex += 1
+
+        #if Lightfoot
         if self.subclass == '1':
-            self.dex += 1
-            self.traits['Naturally Stealthy'] = "You can attempt to hide even when you are obscurred only by a creature that is one size category larger than you."
-            
-        elif self.subclass == '2':
             self.cha += 1
-            self.traits['Fearless'] = 'When you are frightened, you can take an action to end the frightening effect on yourself.'
+            self.traits['Naturally Stealthy'] = "You can attempt to hide even when you are obscurred only by a creature that is one size category larger than you."
+        #if Stout
+        elif self.subclass == '2':
+            self.con += 1
+            self.traits['Stout Resilience'] = 'You have advantage on saving throws against poison, and you have resistance against poison damage.'
 
     def __str__(self):
         print "Level: "+str(self.level)
@@ -244,15 +262,18 @@ class Human(Character):
         Character.__init__(self,level)
 
         self.traits = {"Size":"Medium",
-                       "Speed": 30,
-                       "Languages":"Common"
+                       "Speed": "30 feet",
+                       "Languages":"Common",
+                       "Ability Score Adjustment":"Your starting ability scores each increase by 1."
                                                
                        }
-         
-    
-
-        self.abilityScoreAdjustment()
-
+        #A list of abilities 
+        abilities_list = ['str','dex','con','int','wis','cha']
+        #Add 1 to each ability score as guided by trait
+        for i in abilities_list:
+            self.stealthUpdate(i,1)
+        
+    '''
     def abilityScoreAdjustment(self):
         """
         This function is only called for Human races to calculate their
@@ -271,7 +292,7 @@ class Human(Character):
         #Updates all remaining scores by 1
         for i in abilities_list:
             self.stealthUpdate(i,1)
- 
+     '''
         
     def __str__(self):
         print "Level: "+str(self.level)
