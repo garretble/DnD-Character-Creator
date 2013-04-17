@@ -65,7 +65,13 @@ class Character(object):
         #or class specific characteristics
         #The list represents [str,dex,con,int,wis,cha,hp]
         self.classMods = [0,0,0,0,0,0,0]
-        
+
+        #Experience calculator
+        xp_dict = {1: 0, 2: 250, 3: 950, 4: 2250, 5:4750,
+                   6: 9500, 7:16000, 8:25000, 9: 38000, 10: 56000,
+                   11: 77000, 12: 96000, 13: 120000, 14: 150000, 15: 190000,
+                   16: 230000, 17: 280000, 18: 330000, 19: 390000, 20: 460000}
+        self.xp = xp_dict[self.level]
     
         
     def getAbilityScores(self):
@@ -287,55 +293,73 @@ class Character(object):
 
         #modify hp if character is starting out higher than level 1
         def update_hp_for_higher_level(chosen_class,level):
+            #Checks to see if your character is level 4,8,12,etc.
             def upgradedAbilityAt4(level):
                 if level % 4 == 0:
-                    upgraded_ability = raw_input("Level "+str(level)+"! Which two abilities would you like to upgrade? (Adds +1 to ability)\nPlease input two from str/dex/con/int/wis/cha with a space in between. (ex: cha dex) ").split(' ')
+                    upgraded_ability = raw_input("Level "+str(level)+"!\n  Which two abilities would you like to upgrade? (Adds +1 to ability)\n  Please input two from str/dex/con/int/wis/cha with a space in between.\n  (ex: cha dex) ").split(' ')
                     print
+                    #To write:
+                    #if either ability pushes ability score over 20, redo input
+
+                    
                     for i in upgraded_ability:
                         self.stealthUpdate(i,1)
-                        
+            #class specific HP calculations
             if chosen_class == 'barbarian':                
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,12) + self.con
+                    self.hp += r.randint(1,12) + self.con + self.classMods[6]
             elif chosen_class == 'cleric':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,8) + self.con
+                    self.hp += r.randint(1,8) + self.con + self.classMods[6]
             elif chosen_class == 'druid':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,8) + self.con
+                    self.hp += r.randint(1,8) + self.con + self.classMods[6]
             elif chosen_class == 'fighter':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,10) + self.con
+                    self.hp += r.randint(1,10) + self.con + self.classMods[6]
             elif chosen_class == 'monk':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,8) + self.con
+                    self.hp += r.randint(1,8) + self.con + self.classMods[6]
             elif chosen_class == 'paladin':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,10) + self.con
+                    self.hp += r.randint(1,10) + self.con + self.classMods[6]
             elif chosen_class == 'ranger':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,10) + self.con
+                    self.hp += r.randint(1,10) + self.con + self.classMods[6]
             elif chosen_class == 'rogue':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,6) + self.con
+                    self.hp += r.randint(1,6) + self.con + self.classMods[6]
             elif chosen_class == 'wizard':
                 for i in range(2,self.level+1):
                     upgradedAbilityAt4(i)
-                    self.hp += r.randint(1,6) + self.con
+                    self.hp += r.randint(1,6) + self.con + self.classMods[6]
                     
 
         if self.level > 1:
             update_hp_for_higher_level(chosen_class,self.level)
             
-        
+    def __str__(self):
+        print
+        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print
+        print "Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)
+        self.getAbilityScores()
+        print
+        print "~~~~~~~~~ Traits ~~~~~~~~~ "
+        for i in self.traits:
+            print
+            print "  ~~"+i+"~~"
+            print"    "+str(self.traits[i])
+        print
+        return "End of "+self.race
     
         
         
@@ -377,21 +401,7 @@ class Dwarf(Character):
         self.chooseClass()
 
         print self.__str__()
-        
-    def __str__(self):
-        print
-        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
-        print
-        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
-        self.getAbilityScores()
-        print
-        print "~~~~~~~~~ Traits ~~~~~~~~~ "
-        for i in self.traits:
-            print
-            print "  ~~"+i+"~~"
-            print"    "+str(self.traits[i])
-        print
-        return "End of "+self.race
+  
 
 class Elf(Character):
 
@@ -437,20 +447,7 @@ class Elf(Character):
 
         print self.__str__()
         
-    def __str__(self):
-        print
-        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
-        print
-        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
-        self.getAbilityScores()
-        print
-        print "~~~~~~~~~ Traits ~~~~~~~~~ "
-        for i in self.traits:
-            print
-            print "  ~~"+i+"~~"
-            print"    "+str(self.traits[i])
-        print
-        return "End of "+self.race
+    
 
 class Halfling(Character):
 
@@ -490,23 +487,10 @@ class Halfling(Character):
 
         print self.__str__()
         
-    def __str__(self):
-        print
-        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
-        print
-        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
-        self.getAbilityScores()
-        print
-        print "~~~~~~~~~ Traits ~~~~~~~~~ "
-        for i in self.traits:
-            print
-            print "  ~~"+i+"~~"
-            print"    "+str(self.traits[i])
-        print
-        return "End of "+self.race
+    
 
 class Human(Character):
-
+    ''' Input Level or leave blank for Level 1 '''
     def __init__(self,level=1):
 
         Character.__init__(self,level)
@@ -529,39 +513,7 @@ class Human(Character):
 
         print self.__str__()
         
-    '''
-    def abilityScoreAdjustment(self):
-        """
-        This function is only called for Human races to calculate their
-        upgraded ability scores as per called by their race.
-        """
-        #Asks which ability score to add 2 to (Human trait)
-        score_plus_two = raw_input("Which Ability Score would you like to go up by 2? \n Pleast choose: str,dex,con,int,wis,cha ")
-
-        #A list of the ability scores
-        abilities_list = ['str','dex','con','int','wis','cha']
-
-        #Updates score for chosen ability by 2 then removes it from list
-        self.stealthUpdate(score_plus_two,2)
-        abilities_list.pop(abilities_list.index(score_plus_two))
-
-        #Updates all remaining scores by 1
-        for i in abilities_list:
-            self.stealthUpdate(i,1)
-     '''
+    
         
-    def __str__(self):
-        print
-        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
-        print
-        print "Level: "+str(self.level)+"   HP: "+str(self.hp)
-        self.getAbilityScores()
-        print
-        print "~~~~~~~~~ Traits ~~~~~~~~~ "
-        for i in self.traits:
-            print
-            print "  ~~"+i+"~~"
-            print"    "+str(self.traits[i])
-        print
-        return "End of "+self.race
+    
 
