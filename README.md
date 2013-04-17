@@ -23,4 +23,7 @@ Allows you to update ability's for your character.
 The "ability" argument is a string (ex. 'str') that tells the method which ability to modify,
 and "amount" is by how much. You can use negative values here.
 
-
+character.save(fileName)
+--------------------------------
+Saves your character to a .txt file in the same directory where the Character Creator file
+resides. Currently, the file will overwrite any file in that directory of the same name.
