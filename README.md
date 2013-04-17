@@ -17,7 +17,7 @@ character.getAbilityScores()
 --------------------------------
 This will print out a list of all your ability scores for your character.
 
-character.updateScore(ability,amount)
+character.updateScore(ability, amount)
 --------------------------------
 Allows you to update ability's for your character. 
 The "ability" argument is a string (ex. 'str') that tells the method which ability to modify,
