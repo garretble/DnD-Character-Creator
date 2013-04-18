@@ -10,9 +10,10 @@ print "This program will help you create a character quickly " \
 print
 print "To create a character, simply create a race instance and follow " \
       "the directions."
-print "To do so, type: CharacterName = Race(Level)"
-print "For example: Tim = Dwarf(4)"
-print "Note: leaving the argument blank (e.g. Dwarf() ) will default to Level 1"
+print "To do so, type: CharacterName = Race(Level,Name)"
+print "For example: Tim = Dwarf(4,'Tim')"
+print "Note: leaving the arguments blank (e.g. Dwarf() ) will default to Level 1"\
+      " with a random name."
 print
 print "Races are: Dwarf, Elf, Halfling, Human"
 
