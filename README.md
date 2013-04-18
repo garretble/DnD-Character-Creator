@@ -23,9 +23,9 @@ Allows you to update ability's for your character.
 The "ability" argument is a string (ex. 'str') that tells the method which ability to modify,
 and "amount" is by how much. You can use negative values here.
 
-character.save(fileName)
+character.save()
 --------------------------------
 Saves your character to a .txt file in the same directory where the Character Creator file
-resides. Currently, the file will overwrite any file in that directory of the same name.
+resides. The file will be your character's name, race, class, and level.
 
-ex. Narlbuck.sove("Narlbuck_the_Dwarf") gives a file named "Narlbuck_the_Dwarf.txt"
+ex. Narlbuck.save() -> Narlbuck_Dwarf_Ranger_lvl_1.txt
