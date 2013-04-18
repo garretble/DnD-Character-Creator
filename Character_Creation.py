@@ -39,6 +39,33 @@ def abilityScores():
     scores_list.sort()
     return scores_list
 
+#Default names if no name is given when creating character
+randomNames = {"Dwarf":['Adrik', 'Alberich', 'Baer', 'Barendd', 'Brottor',
+                        'Dain', 'Darrak', 'Eberk', 'Einkil', 'Fargrim',
+                        'Gardain', 'Harbek', 'Kildrak', 'Morgran', 'Orsik',
+                        'Oskar', 'Rangrim', 'Rurik', 'Taklinn', 'Thoradin',
+                        'Thorin', 'Tordek', 'Traubon', 'Travok', 'Ulfgar', 'Veit',
+                        'Vondal'],
+               "Elf":['Adran', 'Aelar', 'Aramil', 'Arannis', 'Aust', 'Beiro',
+                      'Berrian', 'Carric', 'Enialis', 'Erdan', 'Erevan', 'Galinndan',
+                      'Hadarai', 'Heian', 'Himo', 'Immeral', 'Ivellios', 'Laucian',
+                      'Mindartis', 'Paelias', 'Peren', 'Quarion', 'Riardon', 'Rolen',
+                      'Soveliss', 'Thamior', 'Tharivol', 'Theren', 'Varis'],
+               "Halfling":['Alton', 'Ander', 'Cade', 'Corrin', 'Eldon', 'Errich',
+                           'Finnan', 'Garret', 'Lindal', 'Lyle', 'Merric', 'Milo',
+                           'Osborn', 'Perrin', 'Reed', 'Roscoe', 'Wellby'],
+               "Human":['Alton', 'Ander', 'Cade', 'Corrin', 'Eldon', 'Errich',
+                           'Finnan', 'Garret', 'Lindal', 'Lyle', 'Merric', 'Milo',
+                           'Osborn', 'Perrin', 'Reed', 'Roscoe', 'Wellby','Adran', 'Aelar', 'Aramil', 'Arannis', 'Aust', 'Beiro',
+                      'Berrian', 'Carric', 'Enialis', 'Erdan', 'Erevan', 'Galinndan',
+                      'Hadarai', 'Heian', 'Himo', 'Immeral', 'Ivellios', 'Laucian',
+                      'Mindartis', 'Paelias', 'Peren', 'Quarion', 'Riardon', 'Rolen',
+                      'Soveliss', 'Thamior', 'Tharivol', 'Theren', 'Varis','Adrik', 'Alberich', 'Baer', 'Barendd', 'Brottor',
+                        'Dain', 'Darrak', 'Eberk', 'Einkil', 'Fargrim',
+                        'Gardain', 'Harbek', 'Kildrak', 'Morgran', 'Orsik',
+                        'Oskar', 'Rangrim', 'Rurik', 'Taklinn', 'Thoradin',
+                        'Thorin', 'Tordek', 'Traubon', 'Travok', 'Ulfgar', 'Veit',
+                        'Vondal']}
 
             
 
@@ -379,14 +406,14 @@ class Character(object):
         if self.level > 1:
             update_hp_for_higher_level(chosen_class,self.level)
 
-    def save(self,fileName):
+    def save(self):
         """
         Saves a character to a .txt file in same directory as this file.
         """
         
-        
+        fileName=self.characterName+"_"+self.race+"_"+self.classType+"_lvl_"+str(self.level)
         new_file = open(str(fileName)+".txt","w")
-        new_file.write("~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
+        new_file.write("~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
         new_file.write("Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+"\n")
         new_file.write(str(self.abilityScores()))
         new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
@@ -398,9 +425,15 @@ class Character(object):
         print "File "+str(fileName)+".txt saved."
 
     def createTraits(self,fileName,startLine,stopLine):
-        """
+        """ (str,str,str) -> dict
         returns a dictionary of traits for character. Populates the self.traits
         variable for the character class.
+
+        fileName: The file to open
+        startLine: The function looks for this line before running; its usage
+           here looks for "Traits:" before executing further
+        stopLine: The place to stop; its usage here looks for line "Stop:" in
+           the opened file. 
         """
         traits_file = open(fileName,'r')
         
@@ -434,7 +467,7 @@ class Character(object):
             
     def __str__(self):
         print
-        print "~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print "~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~"
         print
         print "Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])
         self.getAbilityScores()
@@ -451,10 +484,10 @@ class Character(object):
         
 class Dwarf(Character):
 
-    def __init__(self,level=1):
+    def __init__(self,level=1,characterName=randomNames["Dwarf"][r.randint(0,len(randomNames["Dwarf"])-1)]):
 
         Character.__init__(self,level)
-
+        self.characterName = characterName
         self.race = "Dwarf"
         self.classType = ''
         
@@ -494,10 +527,10 @@ class Dwarf(Character):
 
 class Elf(Character):
 
-    def __init__(self,level=1):
+    def __init__(self,level=1,characterName=randomNames["Elf"][r.randint(0,len(randomNames["Elf"])-1)]):
 
         Character.__init__(self,level)
-
+        self.characterName = characterName
         self.race = "Elf"
         self.classType = ''
         self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
@@ -544,9 +577,10 @@ class Elf(Character):
 
 class Halfling(Character):
 
-    def __init__(self,level=1):
+    def __init__(self,level=1,characterName=randomNames["Halfling"][r.randint(0,len(randomNames["Halfling"])-1)]):
 
         Character.__init__(self,level)
+        self.characterName = characterName
         self.race = "Halfling"
         self.classType = ''
         self.subclass = raw_input("Are you (1) Lightfoot or (2) Stout? (input number) ")
@@ -580,9 +614,10 @@ class Halfling(Character):
 
 class Human(Character):
     ''' Input Level or leave blank for Level 1 '''
-    def __init__(self,level=1):
+    def __init__(self,level=1,characterName=randomNames["Human"][r.randint(0,len(randomNames["Human"])-1)]):
 
         Character.__init__(self,level)
+        self.characterName = characterName
         self.race = "Human"
         self.classType = ''
         self.traits = self.createTraits('Races/Human_Traits.txt','Traits','Stop')
