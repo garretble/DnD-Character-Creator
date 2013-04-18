@@ -105,6 +105,18 @@ class Character(object):
                                                                       mods[4],
                                                                       self.cha,
                                                                       mods[5])
+        
+                
+    def abilityScores(self):
+        """
+        Function used in save() method to return Ability Scores
+        """
+        mods = [(self.str -10)/2,
+                (self.dex-10)/2,
+                (self.con-10)/2,
+                (self.int-10)/2,
+                (self.wis-10)/2,
+                (self.cha-10)/2]
         return "STR: {0} ({1}) \nDEX: {2} ({3})\nCON: {4} ({5})".format(self.str,
                                                                        mods[0],
                                                                        self.dex,
@@ -117,8 +129,7 @@ class Character(object):
                                                                       mods[4],
                                                                       self.cha,
                                                                       mods[5])
-                
-                                                                    
+        
 
     def updateScore(self,ability,amount):
         """ (str,int) -> Nonetype
@@ -376,7 +387,7 @@ class Character(object):
         new_file = open(str(fileName)+".txt","w")
         new_file.write("~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
         new_file.write("Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+"\n")
-        new_file.write(str(self.getAbilityScores()))
+        new_file.write(str(self.abilityScores()))
         new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
         for i in self.traits:
             new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
