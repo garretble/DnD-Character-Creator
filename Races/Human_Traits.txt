@@ -1,0 +1,18 @@
+~~~Human~~~
+Short-lived but influential far beyond their years, humans have rapidly spread across the worlds of D&D. Most are the descendants of pioneers, conquerors, traders, travelers, refugees, and others on the move. As a result, human lands are home to a mix of people—physically, culturally, religiously, and politically diverse. Hardy or fine, light-­‐skinned or dark, showy or austere, primitive or civilized, devout or impious, humans run the gamut.
+
+Traits:
+
+Ability Score Adjustment:
+Your starting ability scores each increase by 1. (Already calculated)
+
+Size:
+Medium.
+
+Speed:
+30 feet.
+
+Languages:
+You can speak, read, and write Common, as well as a number of additional languages of your choice equal to your Intelligence modifier, provided it is positive.
+
+Stop:

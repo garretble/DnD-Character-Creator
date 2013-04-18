@@ -381,9 +381,10 @@ class Character(object):
 
     def save(self,fileName):
         """
-        Saves a character to a .txt file
+        Saves a character to a .txt file in same directory as this file.
         """
-
+        
+        
         new_file = open(str(fileName)+".txt","w")
         new_file.write("~~~~~~~~~~~ Your "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
         new_file.write("Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+"\n")
@@ -394,6 +395,42 @@ class Character(object):
                              
         
         new_file.close()
+        print "File "+str(fileName)+".txt saved."
+
+    def createTraits(self,fileName,startLine,stopLine):
+        """
+        returns a dictionary of traits for character. Populates the self.traits
+        variable for the character class.
+        """
+        traits_file = open(fileName,'r')
+        
+        
+        read_file = ''
+        temp_dict = {}
+        temp_line = ''
+        while read_file[:-2].lower() != startLine.lower():
+            read_file = traits_file.readline()
+        
+        for line in traits_file:
+            if line == "\n":
+                pass
+            elif line[:-2] == stopLine or line[:-1] == stopLine:
+                traits_file.close()
+                return temp_dict            
+            elif len(line) > 0 and ":" in line:
+                temp_line = line[:line.index(":")]               
+                temp_dict[line[:line.index(":")]] = ''
+                
+            elif len(line) > 0:
+                if len(temp_dict) == 0:
+                    pass
+                else:
+                    temp_dict[temp_line] = line[:-1]
+                
+                
+    
+        
+        
             
     def __str__(self):
         print
@@ -426,26 +463,29 @@ class Dwarf(Character):
         while self.subclass not in ['1','2']:
             self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
             print            
-        self.traits = {"Size":"Medium",
+        self.traits = self.createTraits('Races/Dwarf_Traits.txt','Traits','Stop')
+
+        '''{"Size":"Medium",
                        "Speed":"25 feet. Your speed is not reduced by wearing heavy armor with which you have proficiency or for carrying a heavy load.",
                        "Languages":"Common, Dwarven",
                        "Darkvision":"You treat darkness within 60 feet of you as dim light. When you do so, your vision is in  black and white.",
                        "Dwarven Resilience":"You have advantage on saving throws against poison, and you have resistance against poison damage.",
                        "Dwarven Weapon Training":"You are proficient with the battleaxe, handaxe, throwing hammer, and warhammer.",
                        "Stonecunning":"While you are underground, you have advantage on all Wisdom checks to listen and spot, and you roughly know your depth beneath the surface.\n  You also know the approximate age and origin of worked stone you inspect.",
-                       }
+                       }'''
         
         #if Hill Dwarf
         if self.subclass == '1':
             self.str += 1
             self.traits['Dwarven Toughness'] = 'Your hit point maximum increases by 1 and it increases by 1 every time you gain a level. Additionally, whenever you roll Hit Dice during a rest, you regain 1 extra hit point for each Hit Die you roll.'
+            self.traits['Subrace'] = "Hill Dwarf"
             self.hp += 1
             self.classMods[6] += 1
         #if Mountain Dwarf
         elif self.subclass == '2':
             self.wis += 1
             self.traits['Armor Mastery'] = 'You are proficient with light and medium armor. While wearing medium or heavy armor, you gain a +1 bonus to Armor Class.'
-
+            self.traits['Subrace'] = 'Mountain Dwarf'
         #Choose a class
         self.chooseClass()
 
@@ -465,7 +505,10 @@ class Elf(Character):
         while self.subclass not in ['1','2']:
             self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
             print
-        self.traits = {"Size":"Medium",
+        self.traits = self.createTraits('Races/Elf_Traits.txt','Traits','Stop')
+
+        
+        '''{"Size":"Medium",
                        "Languages":"Common, Elf",
                        "Speed": "30 Feet",
                        "Ability Score Adjustment":"You starting Dexterity score increases by 1.",
@@ -475,7 +518,7 @@ class Elf(Character):
                        "Free Spirit": "You are immune to the charmed condition and to any effect that would put you to sleep.",
                        "Trance": 'Elves do not need to sleep. Instead, they meditate deeply for 4 hours a day. (The Common word for such meditation is "trance.") While meditating, you can dream after a fashion; such dreams are actually mental excercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.',
                        
-                       }
+                       }'''
         #Added dex due to trait
         self.dex += 1
 
@@ -484,13 +527,14 @@ class Elf(Character):
             self.int += 1
             self.traits['Extra Language'] = "You can speak, read, and write one extra language of your choice."
             self.traits['Cantrip'] = "You know one cantrip of your choice from the wizard's cantrip list. Intelligence is your magic ability for it."
+            self.traits['Subrace'] = 'High Elf'
         #if Wood Elf    
         elif self.subclass == '2':
             self.wis += 1
             self.traits['Speed'] = "35 Feet"
             self.traits['Fleet of Foot'] = "Your speed increases by 5 feet."
             self.traits['Mask of the Wild'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
-
+            self.traits['Subrace'] = "Wood Elf"
         #Choose a class
         self.chooseClass()
 
@@ -510,14 +554,8 @@ class Halfling(Character):
         while self.subclass not in ['1','2']:
             self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
             print
-        self.traits = {"Size":"Small",
-                       "Speed": "25 feet",
-                       "Ability Score Adjustment": "Your starting Dexterity score increases by 1.",
-                       "Languages":"Common, Halfling",
-                       "Fearless":"You have advantage on saving throws against being frightened",
-                       "Halfling Nimbleness":"You can move through the space of any creature that is of a size larger and yours.",
-                       "Lucky":"When you roll a natural 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
-                       }
+        
+        self.traits = self.createTraits('Races/Halfling_Traits.txt','Traits','Stop')
 
         #Added dex due to trait
         self.dex += 1
@@ -526,10 +564,12 @@ class Halfling(Character):
         if self.subclass == '1':
             self.cha += 1
             self.traits['Naturally Stealthy'] = "You can attempt to hide even when you are obscurred only by a creature that is one size category larger than you."
+            self.traits['Subrace'] = 'Lightfoot'
         #if Stout
         elif self.subclass == '2':
             self.con += 1
             self.traits['Stout Resilience'] = 'You have advantage on saving throws against poison, and you have resistance against poison damage.'
+            self.traits['Subrace'] = 'Stout'
 
         #Choose a class
         self.chooseClass()
@@ -545,12 +585,9 @@ class Human(Character):
         Character.__init__(self,level)
         self.race = "Human"
         self.classType = ''
-        self.traits = {"Size":"Medium",
-                       "Speed": "30 feet",
-                       "Languages":"Common",
-                       "Ability Score Adjustment":"Your starting ability scores each increase by 1."
-                                               
-                       }
+        self.traits = self.createTraits('Races/Human_Traits.txt','Traits','Stop')
+        
+        
         #A list of abilities 
         abilities_list = ['str','dex','con','int','wis','cha']
         #Add 1 to each ability score as guided by trait

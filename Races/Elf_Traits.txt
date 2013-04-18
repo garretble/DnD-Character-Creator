@@ -1,0 +1,36 @@
+~~~Elf~~~
+Elves are an ancient and powerful people, whose years are long and whose passions run deep. They form tight communities in hidden forests but mingle freely with other humanoids, always welcome yet never at home. Elves favor things of natural and simple beauty and are famed for their poetry, dance, song, lore, and magical arts. When danger threatens their woodland homes, however, they reveal a stern martial side, demonstrating skill with sword, bow, and battle strategy.
+
+
+Traits:
+
+Ability Score Adjustment:
+Your starting Dexterity score increases by 1. (Already Calculated)
+
+Size:
+Medium.
+
+Speed:
+30 feet.
+
+Low-Light Vision:
+You can see in dim light as well as you do in bright light.
+
+Elf Weapon Training:
+You are proficient with the long sword, short sword, shortbow, and longbow.
+
+Keen Senses:
+You have advantage on all Wisdom checks to listen and spot.
+
+Free Spirit:
+You are immune to the charmed condition and to any effect that would put you to sleep.
+
+Trance:
+Elves do not need to sleep. Instead, they meditate deeply for 4 hours a day. (The Common word for such meditation is “trance.”) While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.
+
+Languages:
+You can speak, read, and write Common and Elvish, as well as a number of additional languages of your choice equal to your Intelligence modifier, provided it is positive.
+
+Subrace:
+
+Stop:

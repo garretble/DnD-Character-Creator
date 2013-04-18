@@ -1,0 +1,32 @@
+~~~Dwarf~~~
+Many ages have passed since the dwarven kingdoms commanded the world. Their mightiest strongholds, delved into misty mountains, have long since fallen into shadow’s hands. The magnificent walls now lie in rubble, shattered by giants’ boulders and invaders’ siege engines. Where once dwarf miners tunneled through rock and toiled at the forges, now orcs and goblins roam. The fabulous riches for which they are famed have been plundered by enemies from below. And yet, the dwarves remain. They remember their ancient glories. And they cravevengeance against the enemies who brought them low.The world knows dwarves for their skill in battle, their ability to withstand physical and magical punishment, and their knowledge of the earth’s secrets. They are as renowned for their hard work as for their ability to quaff large quantities of ale. Their ancient and mysterious kingdoms, carved into the hearts of mountains, are famed for their marvelous treasures.
+
+
+
+Traits:
+
+Ability Score Adjustment:
+Your starting Constitution score increases by 1. (Already Calculated)
+
+Size:
+Medium.
+
+Speed:
+25 feet. Your speed is not reduced by wearing heavy armor with which you have proficiency or for carrying a heavy load.
+
+Darkvision:
+You treat darkness within 60 feet of you as dim light. When you do so, your vision is in black and white.
+
+Dwarven Resilience:
+You have advantage on saving throws against poison, and you have resistance against poison damage.
+
+Dwarven Weapon Training:
+You are proficient with the battleaxe, handaxe, throwing hammer, and warhammer.
+
+Stonecunning:
+While you are underground, you have advantage on all Wisdom checks to listen and spot, and you roughly know your depth beneath the surface. You also know the approximate age and origin of worked stone you inspect.
+
+Languages:
+You can speak, read, and write Common and Dwarvish, as well as a number of additional languages of your choice equal to your Intelligence modifier, provided it is positive.
+
+Stop:

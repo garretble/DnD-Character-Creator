@@ -1,0 +1,29 @@
+~~~Halfling~~~
+The diminutive halflings survive in a world full of larger creatures by avoiding notice or, barring that, avoiding offense. They appear harmless and so have managed to survive for centuries in the shadow of empires and on the edges of wars and political strife. Some halflings live quiet and peaceful lives in remote agricultural communities, while others form nomadic bands that travel constantly, lured by the open road and the wide horizon to discover the wonders of new lands and peoples.
+
+Traits:
+
+Ability Score Adjustment:
+Your starting Dexterity score increases by 1. (Already calculated)
+
+Size:
+Small.
+
+Speed:
+25 feet.
+
+Lucky:
+When you roll a natural 1 on an attack roll, ability check, or saving throw, you can recall the die and must use the new roll.
+
+Fealress:
+You have advantage on saving throws against being frightened.
+
+Halfling Nimbleness:
+You can move through the space of any creature that is of a size larger than yours.
+
+Languages:
+You can speak, read, and write Common and Halfling, as well as a number of additional languages of your choice equal to your Intelligence modifier, provided it is positive.
+
+Subrace:
+
+Stop:
