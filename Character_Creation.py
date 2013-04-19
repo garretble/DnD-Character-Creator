@@ -642,24 +642,24 @@ class Dwarf(Character):
         
         
         
-        self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
+        self.subrace = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
         print
-        while self.subclass not in ['1','2']:
-            self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
+        while self.subrace not in ['1','2']:
+            self.subrace = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
             print            
         self.traits = self.createTraits('Races/Dwarf_Traits.txt','Traits','Stop')
 
         
         
         #if Hill Dwarf
-        if self.subclass == '1':
+        if self.subrace == '1':
             self.str += 1
             self.traits['Dwarven Toughness'] = 'Your hit point maximum increases by 1 and it increases by 1 every time you gain a level. Additionally, whenever you roll Hit Dice during a rest, you regain 1 extra hit point for each Hit Die you roll.'
             self.traits['Subrace'] = "Hill Dwarf"
             self.hp += 1
             self.classMods[6] += 1
         #if Mountain Dwarf
-        elif self.subclass == '2':
+        elif self.subrace == '2':
             self.wis += 1
             self.traits['Armor Mastery'] = 'You are proficient with light and medium armor. While wearing medium or heavy armor, you gain a +1 bonus to Armor Class.'
             self.traits['Subrace'] = 'Mountain Dwarf'
@@ -678,10 +678,10 @@ class Elf(Character):
         self.characterName = characterName
         self.race = "Elf"
         
-        self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
+        self.subrace = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
         print
-        while self.subclass not in ['1','2']:
-            self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
+        while self.subrace not in ['1','2']:
+            self.subrace = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
             print
         self.traits = self.createTraits('Races/Elf_Traits.txt','Traits','Stop')
 
@@ -691,13 +691,13 @@ class Elf(Character):
         self.dex += 1
 
         #if High Elf
-        if self.subclass == '1':
+        if self.subrace == '1':
             self.int += 1
             self.traits['Extra Language'] = "You can speak, read, and write one extra language of your choice."
             self.traits['Cantrip'] = "You know one cantrip of your choice from the wizard's cantrip list. Intelligence is your magic ability for it."
             self.traits['Subrace'] = 'High Elf'
         #if Wood Elf    
-        elif self.subclass == '2':
+        elif self.subrace == '2':
             self.wis += 1
             self.traits['Speed'] = "35 Feet"
             self.traits['Fleet of Foot'] = "Your speed increases by 5 feet. (Already calculated)"
@@ -719,10 +719,10 @@ class Halfling(Character):
         self.characterName = characterName
         self.race = "Halfling"
         
-        self.subclass = raw_input("Are you (1) Lightfoot or (2) Stout? (input number) ")
+        self.subrace = raw_input("Are you (1) Lightfoot or (2) Stout? (input number) ")
         print
-        while self.subclass not in ['1','2']:
-            self.subclass = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
+        while self.subrace not in ['1','2']:
+            self.subrace = raw_input("Are you a (1) Lightfoot or (2) Stout? (input number) ")
             print
         
         self.traits = self.createTraits('Races/Halfling_Traits.txt','Traits','Stop')
@@ -731,12 +731,12 @@ class Halfling(Character):
         self.dex += 1
 
         #if Lightfoot
-        if self.subclass == '1':
+        if self.subrace == '1':
             self.cha += 1
             self.traits['Naturally Stealthy'] = "You can attempt to hide even when you are obscurred only by a creature that is one size category larger than you."
             self.traits['Subrace'] = 'Lightfoot'
         #if Stout
-        elif self.subclass == '2':
+        elif self.subrace == '2':
             self.con += 1
             self.traits['Stout Resilience'] = 'You have advantage on saving throws against poison, and you have resistance against poison damage.'
             self.traits['Subrace'] = 'Stout'
