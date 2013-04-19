@@ -475,6 +475,25 @@ class Character(object):
                                    "alike in good faith.",
                                    "Gather Rumors, Persuade, Recall Lore (folklore), and Sense Motive"
                                    ],
+                       'Bounty Hunter': [False,0,
+                                         [],
+                                         ["Bounty Board","When you are in an area of civilization, you can "\
+                                          "find information about fugitives and the bounties on their heads, "\
+                                          "and you can secure the legal authority to hunt down and capture or "\
+                                          "kill those fugitives. Sometimes the authorities will come to you, "\
+                                          "as an established bounty hunter, with specific requests. Your "\
+                                          "reputation and knowledge make it easy for you to establish useful "\
+                                          "contacts in the town watch or guard.\n    When you attempt to locate "\
+                                          "a fugitive, if you fail to locate that quarry yourself, you often know "\
+                                          "where to go and from whom to obtain information on that quarry's where"\
+                                          "abouts. Usually this comes in the form of contacts you have cultivated "\
+                                          "on past hunts. Your DM might rule that this information is unavailable - "\
+                                          "some creatures have ways of hiding themselves that are very difficult to "\
+                                          "uncover."],
+                                         "You track down and capture fugitives for the bounty placed on their heads. "\
+                                         "You might have worked on the frontier, where you hunted outlaws, or maybe you "\
+                                         "sniffed out thieves and other criminals in the city's underworld.",
+                                         "Gather Rumors, Search, Sneak, and Spot"],
                        
                        
 
@@ -577,9 +596,12 @@ class Character(object):
         new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
         for i in self.traits:
             new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
-        new_file.write("\n\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~"\
-                       "\nProfession: "+self.backgroundProfession+"\n\n"\
-                       "    "+self.backgroundStory)
+        new_file.write("\n\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~\n")
+        if self.backgroundProfession == '':
+            pass
+        else:
+            new_file.write("Profession: "+self.backgroundProfession)
+        new_file.write("\n  "+self.backgroundStory)
         
         new_file.close()
         print "File "+str(fileName)+".txt saved."        
@@ -604,9 +626,12 @@ class Character(object):
             print"    "+str(self.traits[i])
         print
         print "~~~~~~~~~ Background: "+self.background+" ~~~~~~~~"
-        print "Profession: "+self.backgroundProfession
+        if self.backgroundProfession == '':
+            pass
+        else:
+            print "Profession: "+self.backgroundProfession
         print
-        print "    "+self.backgroundStory
+        print "  "+self.backgroundStory
         return "End of "+self.race
     
         
