@@ -504,15 +504,29 @@ class Character(object):
         #Ask user to choose a background and set that to self.background
         background_choice = raw_input('Enter a background from this list: '+str(background_list)+': ').title()
         print
+        while background_choice not in background_list:
+            background_choice = raw_input('Enter a background from this list: '+str(background_list)+': ').title()
+            print
         self.background = background_choice
         self.backgroundStory = backgrounds[self.background]['story']
         #Add the background's trait to self.traits
         self.traits[backgrounds[self.background]['trait'][0]] = backgrounds[self.background]['trait'][1]
         #If the background has a profession, add that now
         if backgrounds[self.background]['hasProfession'] == True:
+            profession_holder = []
+            for i in backgrounds[self.background]['professions']:
+                if i in profession_holder:
+                    pass
+                else:
+                    profession_holder.append(i)
+            print profession_holder
             temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background]['professions'])+"\n"\
-                                    "Enter one from the list above or press Enter for random. ")
+                                    "Enter one from the list above or press Enter for random. ").title()
             print
+            while temp_choice != '' and temp_choice not in backgrounds[self.background]['professions']:
+                temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background]['professions'])+"\n"\
+                                    "Enter one from the list above or press Enter for random. ").title()
+                print
             if temp_choice == '':
                 temp_int = r.randint(0,len(backgrounds[self.background]['professions'])-1)
                 self.backgroundProfession = backgrounds[self.background]['professions'][temp_int]
