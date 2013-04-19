@@ -444,61 +444,57 @@ class Character(object):
     
     def backgroundAndSkills(self):
         """
-        Helps character choose Background and Skills.
+        Helps user choose Background and Skills.
         """
-                  
-        backgrounds = {'Artisan': [True,12,
-                                   ['Blacksmith','Bowyer or fletcher','Brewer',
-                                    'Calligrapher','Carpenter','Cartographer',
-                                    'Cook','Goldsmith/Silversmith','Jeweler',
-                                    'Painter','Potter','Weaver'],
-                                   ["Guild Membership","You are a member of a guild that "\
-                                    "is connected to your chosen craft. Fellow members of "\
-                                    "the guild will provide you with lodging and food. In "\
-                                    "some cities and towns, a guild hall offers a central "\
-                                    "place to meet other members of your profession.\n    "\
-                                    "Guilds often wield tremendous political power. If you "\
-                                    "are accused of a crime, your guild will support you if "\
-                                    "a good case can be made for your innocence or the crime "\
-                                    "is justifiable. You can also gain access to powerful "\
-                                    "political figures through the guild, if you are a member "\
-                                    "in good standing. Such connections might require the "\
-                                    "donation of money or magic items to the guild's coffers.\n    "\
-                                    "You must pay dues of 5 gp per month to the guild. If you "\
-                                    "miss payments, you must maake up back dues to remain in the "\
-                                    "guild's good graces."],
-                                   "You apprenticed under a master artisan until you learned enough "\
-                                   "to strike out on your own. You have the skills needed to create "\
-                                   "finished items from raw materials. Additionally, you are well "\
-                                   "connected to other artisans in your field, perhaps as a member of "\
-                                   "a guild, and have learned to deal with colleagues and customers "\
-                                   "alike in good faith.",
-                                   "Gather Rumors, Persuade, Recall Lore (folklore), and Sense Motive"
-                                   ],
-                       'Bounty Hunter': [False,0,
-                                         [],
-                                         ["Bounty Board","When you are in an area of civilization, you can "\
-                                          "find information about fugitives and the bounties on their heads, "\
-                                          "and you can secure the legal authority to hunt down and capture or "\
-                                          "kill those fugitives. Sometimes the authorities will come to you, "\
-                                          "as an established bounty hunter, with specific requests. Your "\
-                                          "reputation and knowledge make it easy for you to establish useful "\
-                                          "contacts in the town watch or guard.\n    When you attempt to locate "\
-                                          "a fugitive, if you fail to locate that quarry yourself, you often know "\
-                                          "where to go and from whom to obtain information on that quarry's where"\
-                                          "abouts. Usually this comes in the form of contacts you have cultivated "\
-                                          "on past hunts. Your DM might rule that this information is unavailable - "\
-                                          "some creatures have ways of hiding themselves that are very difficult to "\
-                                          "uncover."],
-                                         "You track down and capture fugitives for the bounty placed on their heads. "\
-                                         "You might have worked on the frontier, where you hunted outlaws, or maybe you "\
-                                         "sniffed out thieves and other criminals in the city's underworld.",
-                                         "Gather Rumors, Search, Sneak, and Spot"],
-                       
-                       
+        backgrounds = {}
+        def createBackgrounds(fileName):
+            """ (str) -> None
+            Opens a file with background information and populates the backgrounds dictionary with
+            that information
+            """
+            backgroundFile = open(fileName,'r')
+            current_bg = ''
+            for line in backgroundFile:
+                #If there is no text, go to next line
+                if line == "\n":
+                    pass
+                #Else if the line starts with "~~", create new key in top level
+                #dictionary with the remainder of that line and set its value
+                #to an empty dictionary
+                elif line[:2] == "~~":
+                    current_bg = line[2:-1]
+                    backgrounds[line[2:-1]] = {}
+                #Go through the next few lines and set them to keys and values
+                #in the nestled dictionary
+                elif ":" in line:
+                    line_heading = line[:line.index(":")]
+                    after_heading = line[line.index(":")+2:-1]
+                    #create a key/value pair for the background regarding its profession
+                    if line_heading == "hasProfession":
+                        
+                        #Change the string to a bool
+                        if after_heading == "True":
+                            backgrounds[current_bg][line_heading] = True
+                        else:
+                            backgrounds[current_bg][line_heading] = False
+                    #Create professions list if current BG has professions
+                    if line_heading == "professions" and backgrounds[current_bg]['hasProfession']:
+                        backgrounds[current_bg]['professions'] = after_heading.split(', ')
+                    #Create a two item list to store the trait name and its description
+                    if line_heading == "trait":
+                        backgrounds[current_bg]['trait'] = [line[line.index(":")+2: line.index("-")-1],\
+                                                            line[line.index("-")+2:-1]]
+                    #Create an entry for the story of a character's background
+                    if line_heading == "story":
+                        backgrounds[current_bg]['story'] = after_heading
+                    #Create a list for the recommended skills
+                    if line_heading == "recommended":
+                        backgrounds[current_bg]['recommended'] = after_heading.split(', ')
+            backgroundFile.close()
+        createBackgrounds('Backgrounds.txt')
 
-
-                       }
+            
+ 
         
         #Make a list of backgrounds
         background_list = []
@@ -509,17 +505,17 @@ class Character(object):
         background_choice = raw_input('Enter a background from this list: '+str(background_list)+': ').title()
         print
         self.background = background_choice
-        self.backgroundStory = backgrounds[self.background][4]
+        self.backgroundStory = backgrounds[self.background]['story']
         #Add the background's trait to self.traits
-        self.traits[backgrounds[self.background][3][0]] = backgrounds[self.background][3][1]
+        self.traits[backgrounds[self.background]['trait'][0]] = backgrounds[self.background]['trait'][1]
         #If the background has a profession, add that now
-        if backgrounds[self.background][0] == True:
-            temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background][2])+"\n"\
+        if backgrounds[self.background]['hasProfession'] == True:
+            temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background]['professions'])+"\n"\
                                     "Enter one from the list above or press Enter for random. ")
             print
             if temp_choice == '':
-                temp_int = r.randint(0,backgrounds[self.background][1]-1)
-                self.backgroundProfession = backgrounds[self.background][2][temp_int]
+                temp_int = r.randint(0,len(backgrounds[self.background]['professions'])-1)
+                self.backgroundProfession = backgrounds[self.background]['professions'][temp_int]
             else:
                 self.backgroundProfession = temp_choice
         else:
@@ -532,7 +528,7 @@ class Character(object):
         for i in skills:
             print i.title()
         print
-        print "Recommended skills for your "+self.background+" are: "+backgrounds[self.background][5]
+        print "Recommended skills for your "+self.background+" are: "+str(backgrounds[self.background]['recommended'])
         for i in range(4):
             skill_choice.append(raw_input("Which Skill would you like for skill "+str(i+1)+"? ").title())
         self.skills = skill_choice

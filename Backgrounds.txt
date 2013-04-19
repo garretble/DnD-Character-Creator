@@ -1,0 +1,134 @@
+
+~~Artisan
+hasProfession: True
+
+professions: Blacksmith, Bowyer or Fletcher, Brewer, Calligrapher, Carpenter, Cartographer, Cook, Goldsmith/SilverSmith, Jeweler, Painter, Potter, Weaver,
+
+trait: Guild Membership - You are a member of a guild that is connected to your chosen craft. Fellow members of the guild will provide you with lodging and food. In some cities and towns, a guild hall offers a central place to meet other members of your profession. Guilds often wield tremendous political power. If you are accused of a crime, your guild will support you if a good case can be made for your innocence or the crime is justifiable. You can also gain access to powerful political figures through the guild, if you are a member in good standing. Such connections might require the donation of money or magic items to the guild's coffers. You must pay dues of 5 gp per month to the guild. If you miss payments, you must make up back dues to remain in the guild's good graces. 
+
+story: You apprenticed under a master artisan until you learned enough to strike out on your own. You have the skills needed to create finished items from raw materials. Additionally, you are well connected to other artisans in your field, perhaps as a member of a guild, and have learned to deal with colleagues and customers alike in good faith.
+
+recommended: Gather Rumors, Persuade, Recall Lore (folklore), Sense Motive
+
+
+
+~~Bounty Hunter
+hasProfession: False
+
+professions:
+
+trait: Bounty Board - When you are in an area of civilization, you can find information about fugitives and the bounties on their heads, and you can secure the legal authority to hunt down and capture or kill those fugitives. Sometimes the authorities will come to you, as an established bounty hunter, with specific requests. Your reputation and knowledge make it easy for you to establish useful contacts in the town watch or guard. \nWhen you attempt to locate a fugitive, if you fail to locate that quarry yourself, you often know where to go and from whom to obtain information on that quarry's whereabouts. Usually this comes in the form of contacts you have cultivated on past hunts. Your DM might rule that this information is unavailable - some creatures have ways of hiding themselves that are very difficult to uncover.
+
+story: You track down and capture fugitives for the bounty placed on their heads. You might have worked on the frontier, where you hunted outlaws, or maybe you sniffed out thieves and other criminals in the city's underworld.
+
+recommended: Gather Rumors, Search, Sneak, Spot
+
+~~Charlatan
+
+hasProfession: False
+
+trait: False Identity - You have created a second identity that includes documentation, established acquaintances, and disguises that allow you to assume that persona. Additionally, you can forge documents including official papers and personal letters in a specific person's handwriting, as long as you have seen an example of the kind of document you are trying to copy.
+
+story: You can talk your way out of almost any situation and know the right things to say to get the information you seek. You're a swindler, and the use of deception to get your way comes to you as naturally as others tell the truth. You think of yourself as a confidence artist; you can pull off short and long cons, and in a pinch, peddle snake oil.
+
+recommended: Bluff, Conceal an Object, Intimidate, Perform
+
+~~Commoner
+hasProfession: True
+professions: Fisher, Fisher, Forester, Laborer, Laborer, Laborer, Laborer, Messenger, Messenger, Messenger, Sailor, Serf, Serf, Serf, Servant, Servant, Shepherd, Trapper
+
+trait: Salt of the Earth - Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among commoners, unless you have shown yourself to be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you.
+
+story: You come from a humble social rank, perhaps working as a farmer, servant, or laborer. Although your background is not as glamorous as others, you find it easy to blend in wherever you go and have a sort of folksy wisdom that can sometimes help you out of a jam.
+
+recommended: Drive, Handle an Animal, Perform, Spot
+
+~~Guide
+hasprofession: False
+
+trait: Wanderer - You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth.
+
+story: You know the wilderness like the back of your hand. You have spent many days and nights in the wild, sometimes traveling on your own but more often leading others along rarely used tracks and paths.
+
+recommended: Climb, Recall Lore (natural lore), Spot, Swim
+
+~~Guild Thief
+hasProfession: False
+
+trait: Thieves' Cant - Among thieves, there is a secret language, which uses a combination of jargon words and secret signs that members of the criminal underworld know and use. Creatures hearing you converse in Thieves’ Cant might think you say one thing when you are actually saying something else entirely. You have learned the secret language of thieves. You can correctly interpret thief signs and doublespeak, and you can communicate in this manner to others familiar with this language.
+
+story: You made a living by stealing as a member of a thieves’ guild. The guild is similar to a modern organized crime syndicate. It exacts protection money from criminals and businesses alike, and it uses its influence to keep the city watch focused on apprehending criminals who operate without the guild’s blessing. Necessity might have driven you to this work, having no other means to provide for yourself, or you might have been an orphan taken in by a thieves’ guild. Whatever your reasons, you learned how to slip into places where others would prefer you not go, neutralizing traps, locks, and sentries with uncanny skill.
+
+recommended: Balance, Listen, Search, Sneak
+
+~~Jester
+hasProfession: False
+trait: Licensed Fool - You enjoy the rare privilege of speaking your mind with little concern for repercussions. As a jester, it is your duty to use comedy to point out the absurdities of the world. You can criticize through the lens of humor without giving offense. In addition, you can gain access to nobles so that you may perform. When traveling, you can usually find a meal and a place to stay in the local castle or manor house in return for a performance.
+
+story: You were employed as a jester by a noble. You performed acrobatic stunts, told jokes and stories, and provided entertainment for your employer and his or her guests. You also served a key role, lacing you entertainments with criticisms and observations too controversial for others to speak aloud.
+
+recommended: Balance, Perform, Persuade, Tumble
+
+~~Knight
+hasProfession: False
+trait: Knight's Station - When you are among nobility or some other group that would recognize your station as a knight, you can expect to receive free accommodations and food for yourself and your adventuring companions for the duration of your stay. Certain nobles might decline, but this is a serious breach of etiquette and usually has social consequences.
+
+story: You have successfully completed your training as a squire and earned the title of Knight. Your title carries many responsibilities, and you are expected to behave in a chivalrous manner, protect the innocent, and mete justice across the land. You might be sworn to a noble house or be a wandering knight, questing for some prize or glory.
+
+recommended: Persuade, Recall Lore (military lore and political lore), Ride
+
+~~Minstrel
+hasProfession: False
+trait: Noted Performer - You can always find a place to perform, usually in an inn or tavern. At such a place, you receive free lodging and food (within reason) as long as you perform each night. In addition, your performance makes you something of a local figure. When strangers recognize you in a town where you have performed, they typically take a liking to you.
+
+story: You wander the land performing music, telling tales, and entertaining audiences with your talents. Rarely does a community not welcome you in, as you bring news of distant lands to the common folk.
+
+recommended: Listen, Perform, Persuade, Recall Lore (folklore)
+
+~~Noble
+hasProfession: False
+trait: Retainers - You are a member of a noble family and have the service of three retainers loyal to your family. These retainers can be squires, attendants, messengers, or even a major-domo. Your retainers can perform mundane tasks for you, but they do not fight for you and will leave if they are frequently endangered or abused.
+
+story: You carry a noble title appropriate to the realm you come from. Your family either currently has or at one time had wealth, power, and influence. Work with your DM to come up with an appropriate title and determine how much authority that title carries within the realm and beyond it.
+
+recommended: Intimidate, Persuade, Recall Lore (political lore), Sense Motive
+
+~~Priest
+hasProfession: False
+trait: Temple Services - You belong to a specific temple dedicated to your chosen power. You have a residence there, and you can perform religious ceremonies and offer sermons drawn from the sacred teachings of your faith. While near your temple, you can call upon acolytes and fellow priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple. Additionally, when you are in a location that has a temple, shrine, or other presence of your faith, you can expect to receive free healing, care, and religious services for yourself and your adventuring companions from others aligned with your faith.
+
+story: You have pledged your life to serve a god, pantheon of gods, or philosophy. You act as an intermediary between your chosen power and the mortal world, conducting sacred rites, offering sacrifices, and expounding the teachings of your faith to those you meet. When you choose this background, select a deity or power. Your knowledge and experience is drawn from your time as a priest in the service of that faith.
+
+recommended: Perform, Persuade, Sense Motive, Recall Lore (religious lore)
+
+~~Sage
+hasProfession: False
+trait: Researcher - When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found. Unearthing the deepest secrets of the universe can require an adventure or even a whole campaign.
+
+story: You have spent many years learning the lore of the world. You scoured manuscripts, studied scrolls, and listened to the greatest experts on the subjects that interest you. Your efforts have made you a true master in the fields you have studied.
+
+recommended: Persuade, Recall Lore (any two), Search
+
+~~Soldier
+hasProfession: False
+trait: Military Rank - You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they will defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment, horses, and vehicles for temporary use. You can also usually gain access to friendly military encampments and fortresses where your rank is recognized.
+
+story: You trained in military skills and possibly fought in a war. You studied the use of weapons and armor, basic survival techniques, and how to stay alive on the battlefield. You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war. When you choose this background, work with your DM to determine which military organization you were a part of, how far through its ranks you progressed, and what kind of experiences you had during your military career.
+
+recommended: Climb, Intimidate, Recall Lore (military lore), Ride
+
+~~Spy
+hasProfession: False
+trait: Contact - You have a contact who acts as your liaison to a network of other spies. You know how to communicate with your contact over great distances (including through the use of magic for quicker communication if you have access to the appropriate spells or items) and typically can exchange information you have gathered for information you seek from your contact.
+
+story: You can learn information that others attempt to keep secret. You collect rumors, whispers, stories, and hard-­‐won evidence. Then you use that knowledge to aid your own endeavors and, when appropriate, to sell to those willing to pay a premium.
+
+recommended: Bluff, Search, Sense Motive, Sneak
+
+~~Thug
+hasProfession: False
+trait: Bad Reputation - No matter where you go, people are afraid of you due to your connections to the dangerous criminal underworld or your history of violence. When you are in a place of civilization, you can get away with minor criminal offenses, such as refusing to pay for food at a tavern or breaking down doors at a local shop, since most people will not report your activity to the authorities.
+
+story: Years of being a street tough have given you an aura of menace. Your look communicates a basic message to those who annoy you: You’d as soon break their knees as receive an apology. Threats and bullying tactics come easily to you. Your demeanor has landed you jobs with less-­‐than-­‐ reputable organizations in the past, where you’ve provided both protection and muscle.
+
+recommended: Break an Object, Gather Rumors, Intimidate, Spot
