@@ -68,6 +68,30 @@ randomNames = {"Dwarf":['Adrik', 'Alberich', 'Baer', 'Barendd', 'Brottor',
                         'Thorin', 'Tordek', 'Traubon', 'Travok', 'Ulfgar', 'Veit',
                         'Vondal']}
 
+#global list of skills
+skills = {'administer first aid': 'wis',
+                  'balance':'dex',
+                  'bluff':'cha',
+                  'break an object':'str',
+                  'climb':'str',
+                  'conceal an object':'dex',
+                  'drive':'dex',
+                  'gather rumors':'cha',
+                  'handle an animal':'wis',
+                  'intimidate':'cha',
+                  'jump':'str',
+                  'listen':'wis',
+                  'perform':'cha',
+                  'persuade':'cha',
+                  'recall lore':'int',
+                  'ride':'dex',
+                  'search':'int',
+                  'sense motive':'wis',
+                  'sneak':'dex',
+                  'spot':'wis',
+                  'swim':'str',
+                  'tumble':'dex'}
+
             
 
         
@@ -87,6 +111,11 @@ class Character(object):
         self.wis = int(raw_input("Please enter WISDOM value: "))
         self.cha = int(raw_input("Please enter CHARISMA value: "))
         self.hp = 0
+        self.classType = ''
+        self.background = ''
+        self.backgroundStory = ''
+        self.backgroundProfession = ''
+        self.skills = ''
         print
 
         #classMods for updating hp and other stats when leveling up, as determined by traits
@@ -354,6 +383,10 @@ class Character(object):
 
         #modify hp if character is starting out higher than level 1
         def update_hp_for_higher_level(chosen_class,level):
+            """
+            Helper function for chooseClass(). Updates character for
+            levels greater than 1.
+            """
             #Checks to see if your character is level 4,8,12,etc.
             def upgradedAbilityAt4(level):
                 if level % 4 == 0:
@@ -407,23 +440,88 @@ class Character(object):
         if self.level > 1:
             update_hp_for_higher_level(chosen_class,self.level)
 
-    def save(self):
+    
+    
+    def backgroundAndSkills(self):
         """
-        Saves a character to a .txt file in same directory as this file.
+        Helps character choose Background and Skills.
         """
+                  
+        backgrounds = {'Artisan': [True,12,
+                                   ['Blacksmith','Bowyer or fletcher','Brewer',
+                                    'Calligrapher','Carpenter','Cartographer',
+                                    'Cook','Goldsmith/Silversmith','Jeweler',
+                                    'Painter','Potter','Weaver'],
+                                   ["Guild Membership","You are a member of a guild that "\
+                                    "is connected to your chosen craft. Fellow members of "\
+                                    "the guild will provide you with lodging and food. In "\
+                                    "some cities and towns, a guild hall offers a central "\
+                                    "place to meet other members of your profession.\n    "\
+                                    "Guilds often wield tremendous political power. If you "\
+                                    "are accused of a crime, your guild will support you if "\
+                                    "a good case can be made for your innocence or the crime "\
+                                    "is justifiable. You can also gain access to powerful "\
+                                    "political figures through the guild, if you are a member "\
+                                    "in good standing. Such connections might require the "\
+                                    "donation of money or magic items to the guild's coffers.\n    "\
+                                    "You must pay dues of 5 gp per month to the guild. If you "\
+                                    "miss payments, you must maake up back dues to remain in the "\
+                                    "guild's good graces."],
+                                   "You apprenticed under a master artisan until you learned enough "\
+                                   "to strike out on your own. You have the skills needed to create "\
+                                   "finished items from raw materials. Additionally, you are well "\
+                                   "connected to other artisans in your field, perhaps as a member of "\
+                                   "a guild, and have learned to deal with colleagues and customers "\
+                                   "alike in good faith.",
+                                   "Gather Rumors, Persuade, Recall Lore (folklore), and Sense Motive"
+                                   ],
+                       
+                       
+
+
+                       }
         
-        fileName=self.characterName+"_"+self.race+"_"+self.classType+"_lvl_"+str(self.level)
-        new_file = open(str(fileName)+".txt","w")
-        new_file.write("~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
-        new_file.write("Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+"\n")
-        new_file.write(str(self.abilityScores()))
-        new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
-        for i in self.traits:
-            new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
-                             
+        #Make a list of backgrounds
+        background_list = []
+        for i in backgrounds:
+            background_list.append(i)
+        background_list.sort()
+        #Ask user to choose a background and set that to self.background
+        background_choice = raw_input('Enter a background from this list: '+str(background_list)+': ').title()
+        print
+        self.background = background_choice
+        self.backgroundStory = backgrounds[self.background][4]
+        #Add the background's trait to self.traits
+        self.traits[backgrounds[self.background][3][0]] = backgrounds[self.background][3][1]
+        #If the background has a profession, add that now
+        if backgrounds[self.background][0] == True:
+            temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background][2])+"\n"\
+                                    "Enter one from the list above or press Enter for random. ")
+            print
+            if temp_choice == '':
+                temp_int = r.randint(0,backgrounds[self.background][1]-1)
+                self.backgroundProfession = backgrounds[self.background][2][temp_int]
+            else:
+                self.backgroundProfession = temp_choice
+        else:
+            pass
+
+        #Ask about skills.
+        skill_choice = []
+        print "You'll now choose 4 skills from this list:"
+        print
+        for i in skills:
+            print i.title()
+        print
+        print "Recommended skills for your "+self.background+" are: "+backgrounds[self.background][5]
+        for i in range(4):
+            skill_choice.append(raw_input("Which Skill would you like for skill "+str(i+1)+"? ").title())
+        self.skills = skill_choice
+            
+                               
         
-        new_file.close()
-        print "File "+str(fileName)+".txt saved."
+
+    
 
     def createTraits(self,fileName,startLine,stopLine):
         """ (str,str,str) -> dict
@@ -463,15 +561,41 @@ class Character(object):
                 
                 
     
+    def save(self):
+        """
+        Saves a character to a .txt file in same directory as this file.
+        """
         
+        fileName=self.characterName+"_"+self.race+"_"+self.classType+"_lvl_"+str(self.level)
+        new_file = open(str(fileName)+".txt","w")
+        new_file.write("~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~\n\n")
+        new_file.write("Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+"\n")
+        new_file.write(str(self.abilityScores()))
+        new_file.write("\n\n~~~~~~~~~ Skills ~~~~~~~~~\n")
+        for i in self.skills:
+            new_file.write("\n"+i+" "+"("+skills[i.lower()].upper()+")")
+        new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
+        for i in self.traits:
+            new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
+        new_file.write("\n\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~"\
+                       "\nProfession: "+self.backgroundProfession+"\n\n"\
+                       "    "+self.backgroundStory)
+        
+        new_file.close()
+        print "File "+str(fileName)+".txt saved."        
         
             
     def __str__(self):
         print
-        print "~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~"
+        print "~~~~~~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~~~~~~"
         print
         print "Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])
         self.getAbilityScores()
+        print
+        print "~~~~~~~~~ Skills ~~~~~~~~~ "
+        print
+        for i in self.skills:
+            print i+" "+"("+skills[i.lower()].upper()+")"
         print
         print "~~~~~~~~~ Traits ~~~~~~~~~ "
         for i in self.traits:
@@ -479,6 +603,10 @@ class Character(object):
             print "  ~~"+i+"~~"
             print"    "+str(self.traits[i])
         print
+        print "~~~~~~~~~ Background: "+self.background+" ~~~~~~~~"
+        print "Profession: "+self.backgroundProfession
+        print
+        print "    "+self.backgroundStory
         return "End of "+self.race
     
         
@@ -490,7 +618,8 @@ class Dwarf(Character):
         Character.__init__(self,level)
         self.characterName = characterName
         self.race = "Dwarf"
-        self.classType = ''
+        
+        
         
         self.subclass = raw_input("Are you a (1) Hill Dwarf or (2) Mountain Dwarf? (input number) ")
         print
@@ -499,14 +628,7 @@ class Dwarf(Character):
             print            
         self.traits = self.createTraits('Races/Dwarf_Traits.txt','Traits','Stop')
 
-        '''{"Size":"Medium",
-                       "Speed":"25 feet. Your speed is not reduced by wearing heavy armor with which you have proficiency or for carrying a heavy load.",
-                       "Languages":"Common, Dwarven",
-                       "Darkvision":"You treat darkness within 60 feet of you as dim light. When you do so, your vision is in  black and white.",
-                       "Dwarven Resilience":"You have advantage on saving throws against poison, and you have resistance against poison damage.",
-                       "Dwarven Weapon Training":"You are proficient with the battleaxe, handaxe, throwing hammer, and warhammer.",
-                       "Stonecunning":"While you are underground, you have advantage on all Wisdom checks to listen and spot, and you roughly know your depth beneath the surface.\n  You also know the approximate age and origin of worked stone you inspect.",
-                       }'''
+        
         
         #if Hill Dwarf
         if self.subclass == '1':
@@ -522,6 +644,7 @@ class Dwarf(Character):
             self.traits['Subrace'] = 'Mountain Dwarf'
         #Choose a class
         self.chooseClass()
+        self.backgroundAndSkills()
 
         print self.__str__()
   
@@ -533,7 +656,7 @@ class Elf(Character):
         Character.__init__(self,level)
         self.characterName = characterName
         self.race = "Elf"
-        self.classType = ''
+        
         self.subclass = raw_input("Are you a (1) High Elf or (2) Wood Elf? (input number) ")
         print
         while self.subclass not in ['1','2']:
@@ -542,17 +665,7 @@ class Elf(Character):
         self.traits = self.createTraits('Races/Elf_Traits.txt','Traits','Stop')
 
         
-        '''{"Size":"Medium",
-                       "Languages":"Common, Elf",
-                       "Speed": "30 Feet",
-                       "Ability Score Adjustment":"You starting Dexterity score increases by 1.",
-                       "Low-Light Vision":"You can see in dim light as well as you do in bright light.",
-                       "Elf Weapon Training":"You are proficient with a long sword, short sword, shortbow, and longbow.",
-                       "Keen Senses": "You have advantage on all Wisdom checks to listen and spot.",
-                       "Free Spirit": "You are immune to the charmed condition and to any effect that would put you to sleep.",
-                       "Trance": 'Elves do not need to sleep. Instead, they meditate deeply for 4 hours a day. (The Common word for such meditation is "trance.") While meditating, you can dream after a fashion; such dreams are actually mental excercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.',
-                       
-                       }'''
+        
         #Added dex due to trait
         self.dex += 1
 
@@ -566,11 +679,12 @@ class Elf(Character):
         elif self.subclass == '2':
             self.wis += 1
             self.traits['Speed'] = "35 Feet"
-            self.traits['Fleet of Foot'] = "Your speed increases by 5 feet."
+            self.traits['Fleet of Foot'] = "Your speed increases by 5 feet. (Already calculated)"
             self.traits['Mask of the Wild'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
             self.traits['Subrace'] = "Wood Elf"
         #Choose a class
         self.chooseClass()
+        self.backgroundAndSkills()
 
         print self.__str__()
         
@@ -583,7 +697,7 @@ class Halfling(Character):
         Character.__init__(self,level)
         self.characterName = characterName
         self.race = "Halfling"
-        self.classType = ''
+        
         self.subclass = raw_input("Are you (1) Lightfoot or (2) Stout? (input number) ")
         print
         while self.subclass not in ['1','2']:
@@ -608,6 +722,7 @@ class Halfling(Character):
 
         #Choose a class
         self.chooseClass()
+        self.backgroundAndSkills()
 
         print self.__str__()
         
@@ -620,7 +735,7 @@ class Human(Character):
         Character.__init__(self,level)
         self.characterName = characterName
         self.race = "Human"
-        self.classType = ''
+        
         self.traits = self.createTraits('Races/Human_Traits.txt','Traits','Stop')
         
         
@@ -632,6 +747,7 @@ class Human(Character):
 
         #Choose a class
         self.chooseClass()
+        self.backgroundAndSkills()
 
         print self.__str__()
         
