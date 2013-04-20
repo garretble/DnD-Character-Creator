@@ -491,6 +491,8 @@ class Character(object):
                     if line_heading == "recommended":
                         backgrounds[current_bg]['recommended'] = after_heading.split(', ')
             backgroundFile.close()
+
+        #Creat background now
         createBackgrounds('Backgrounds.txt')
 
             
@@ -513,18 +515,19 @@ class Character(object):
         self.traits[backgrounds[self.background]['trait'][0]] = backgrounds[self.background]['trait'][1]
         #If the background has a profession, add that now
         if backgrounds[self.background]['hasProfession'] == True:
+            #Create a temp list to account for Commoner's multiple profession listing
             profession_holder = []
             for i in backgrounds[self.background]['professions']:
                 if i in profession_holder:
                     pass
                 else:
                     profession_holder.append(i)
-            print profession_holder
-            temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background]['professions'])+"\n"\
+            #Ask user which profession they'd like or if they press Enter one is chosen randomly
+            temp_choice = raw_input("Which profession would you like? "+str(profession_holder)+"\n"\
                                     "Enter one from the list above or press Enter for random. ").title()
             print
             while temp_choice != '' and temp_choice not in backgrounds[self.background]['professions']:
-                temp_choice = raw_input("Which profession would you like? "+str(backgrounds[self.background]['professions'])+"\n"\
+                temp_choice = raw_input("Which profession would you like? "+str(profession_holder)+"\n"\
                                     "Enter one from the list above or press Enter for random. ").title()
                 print
             if temp_choice == '':
@@ -618,31 +621,28 @@ class Character(object):
         
             
     def __str__(self):
-        print
-        print "~~~~~~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~~~~~~"
-        print
-        print "Level: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])
-        self.getAbilityScores()
-        print
-        print "~~~~~~~~~ Skills ~~~~~~~~~ "
-        print
+        
+        characterInfo = "\n~~~~~~~~~~~~~~~~ "+self.characterName+" the "+self.race+" "+self.classType+" ~~~~~~~~~~~~~~~~"\
+                        "\n\nLevel: "+str(self.level)+"   HP: "+str(self.hp)+"    XP: "+str(self.xp)+"    Hit Dice: "+str(self.level)+str(self.hit_dice[self.classType])+""\
+                        "\n"+self.abilityScores()+"\n\n"\
+                        "~~~~~~~~~ Skills ~~~~~~~~~\n\n"
         for i in self.skills:
-            print i+" "+"("+skills[i.lower()].upper()+")"
-        print
-        print "~~~~~~~~~ Traits ~~~~~~~~~ "
+            characterInfo += i+" "+"("+skills[i.lower()].upper()+")\n"
+
+        characterInfo += "\n\n~~~~~~~~~ Traits ~~~~~~~~~\n"
         for i in self.traits:
-            print
-            print "  ~~"+i+"~~"
-            print"    "+str(self.traits[i])
-        print
-        print "~~~~~~~~~ Background: "+self.background+" ~~~~~~~~"
+            characterInfo += "\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n"
+            
+        characterInfo += "\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~\n"
         if self.backgroundProfession == '':
             pass
         else:
-            print "Profession: "+self.backgroundProfession
-        print
-        print "  "+self.backgroundStory
-        return "End of "+self.race
+            characterInfo += "Profession: "+self.backgroundProfession
+        characterInfo += "\n  "+self.backgroundStory
+
+        return characterInfo
+
+        
     
         
         
