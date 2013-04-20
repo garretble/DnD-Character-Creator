@@ -68,6 +68,7 @@ randomNames = {"Dwarf":['Adrik', 'Alberich', 'Baer', 'Barendd', 'Brottor',
                         'Thorin', 'Tordek', 'Traubon', 'Travok', 'Ulfgar', 'Veit',
                         'Vondal']}
 
+
 #global list of skills
 skills = {'administer first aid': 'wis',
                   'balance':'dex',
@@ -92,7 +93,8 @@ skills = {'administer first aid': 'wis',
                   'swim':'str',
                   'tumble':'dex'}
 
-            
+#global dict for specialties (is filled in the chooseSpecialty() method)
+specialties = {}
 
         
     
@@ -116,6 +118,9 @@ class Character(object):
         self.backgroundStory = ''
         self.backgroundProfession = ''
         self.skills = ''
+        self.specialty = ''
+        self.specialtyStory = ''
+        self.feats = []
         print
 
         #classMods for updating hp and other stats when leveling up, as determined by traits
@@ -242,10 +247,57 @@ class Character(object):
         elif ability == 'hp':
             self.hp += amount
 
+    def createTraits(self,fileName,startLine,stopLine):
+        """ (str,str,str) -> dict
+        returns a dictionary of traits for character. Populates the self.traits
+        variable for the character class.
+
+        fileName: The file to open
+        startLine: The function looks for this line before running; its usage
+           here looks for "Traits:" before executing further
+        stopLine: The place to stop; its usage here looks for line "Stop:" in
+           the opened file. 
+        """
+        traits_file = open(fileName,'r')
+        
+        
+        read_file = ''
+        temp_dict = {}
+        temp_line = ''
+        while read_file[:-2].lower() != startLine.lower():
+            read_file = traits_file.readline()
+        
+        for line in traits_file:
+            if line == "\n":
+                pass
+            elif line[:-2] == stopLine or line[:-1] == stopLine:
+                traits_file.close()
+                return temp_dict            
+            elif len(line) > 0 and ":" in line:
+                temp_line = line[:line.index(":")]               
+                temp_dict[line[:line.index(":")]] = ''
+                
+            elif len(line) > 0:
+                if len(temp_dict) == 0:
+                    pass
+                else:
+                    temp_dict[temp_line] = line[:-1]
+
     def chooseClass(self):
         """
         Asks player to choose a class for his/her character. Called in each character class.
         """
+        #global dictionary of classes with 0 values in a list (ex. [str,dex,con,int,wis,cha,hp,suggested specialty])
+        classes = {'barbarian': [0,0,0,0,0,0,self.con+12,'reaper'],
+                   'cleric':[0,0,0,0,0,0,self.con+8,'mystical healer'],
+                   'druid':[0,0,0,0,0,0,self.con+8,'hedge magician'],
+                   'fighter':[0,0,0,0,0,0,self.con+10,'reaper'],
+                   'monk':[0,0,0,0,0,0,self.con+8,'skirmisher'],
+                   'paladin':[0,0,0,0,0,0,self.con+10,'defender'],
+                   'ranger':[0,0,0,0,0,0,self.con+10,'sharpshooter'],
+                   'rogue':[0,0,0,0,0,0,self.con+6,'specialist'],
+                   'wizard':[0,0,0,0,0,0,self.con+6,'hedge magician']
+                   }
 
         #Ask which class he/she would like
         chosen_class = raw_input("Which class would you like? Please choose from:\nBarbarian, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Wizard " ).lower() 
@@ -256,17 +308,7 @@ class Character(object):
         #Adds character class to Class object for use in print statements
         self.classType = chosen_class.title()
         
-        #Dictionary of classes with 0 values in a list (ex. [str,dex,con,int,wis,cha,hp])
-        classes = {'barbarian': [0,0,0,0,0,0,self.con+12],
-                   'cleric':[0,0,0,0,0,0,self.con+8],
-                   'druid':[0,0,0,0,0,0,self.con+8],
-                   'fighter':[0,0,0,0,0,0,self.con+10],
-                   'monk':[0,0,0,0,0,0,self.con+8],
-                   'paladin':[0,0,0,0,0,0,self.con+10],
-                   'ranger':[0,0,0,0,0,0,self.con+10],
-                   'rogue':[0,0,0,0,0,0,self.con+6],
-                   'wizard':[0,0,0,0,0,0,self.con+6]
-                   }
+        
 
         #Class specific conditional statements. These update the various ability scores
         #in the classes variable
@@ -548,48 +590,79 @@ class Character(object):
         print "Recommended skills for your "+self.background+" are: "+str(backgrounds[self.background]['recommended'])
         for i in range(4):
             skill_choice.append(raw_input("Which Skill would you like for skill "+str(i+1)+"? ").title())
+        print
         self.skills = skill_choice
-            
+        
                                
         
 
-    
-
-    def createTraits(self,fileName,startLine,stopLine):
-        """ (str,str,str) -> dict
-        returns a dictionary of traits for character. Populates the self.traits
-        variable for the character class.
-
-        fileName: The file to open
-        startLine: The function looks for this line before running; its usage
-           here looks for "Traits:" before executing further
-        stopLine: The place to stop; its usage here looks for line "Stop:" in
-           the opened file. 
+    def chooseSpecialties(self):
         """
-        traits_file = open(fileName,'r')
-        
-        
-        read_file = ''
-        temp_dict = {}
-        temp_line = ''
-        while read_file[:-2].lower() != startLine.lower():
-            read_file = traits_file.readline()
-        
-        for line in traits_file:
-            if line == "\n":
-                pass
-            elif line[:-2] == stopLine or line[:-1] == stopLine:
-                traits_file.close()
-                return temp_dict            
-            elif len(line) > 0 and ":" in line:
-                temp_line = line[:line.index(":")]               
-                temp_dict[line[:line.index(":")]] = ''
-                
-            elif len(line) > 0:
-                if len(temp_dict) == 0:
+        Helps user choose a specialty for their character.
+        """
+        #specialties = {}
+        def createSpecialties(fileName):
+            """ (str) -> None
+            Helper function to create specialties dict from file.
+            """
+            specialtyFile = open(fileName,'r')
+            
+            current_specialty = ''
+            
+            for line in specialtyFile:
+                #If there is no text, go to next line
+                if line == "\n":
                     pass
-                else:
-                    temp_dict[temp_line] = line[:-1]
+                #If line starts with "~~", set current_specialty to the specialty
+                #on that line, and create a new key in the specialties dict and
+                #set its value to an empty dict. Then input the first item in the
+                #new dict as the specialty's decription
+                elif line[:2] == "~~":
+                    current_specialty = line[2:line.index("-")-1]
+                    specialties[current_specialty] = {}
+                    specialties[current_specialty]['story'] = line[line.index("-")+1:-1]
+                #If the line starts with "Level," creates entries for which feats
+                #the character will get at levels 1,3,6,9
+                elif line[:5] == "Level":
+                    specialties[current_specialty][int(line[6:7])] = line[line.index(":")+2:-1]
+            specialtyFile.close()
+
+        #Create the specialties dict
+        createSpecialties('Specialties.txt')
+
+
+        #Make list of specialties
+        specialties_list = []
+        for i in specialties:
+            specialties_list.append(i)
+        specialties_list.sort()
+        #Ask user which specialty they'd like, give them recommended specialty for their class
+        class_recommendation = {'Barbarian':'reaper',
+                   'Cleric':'mystical healer',
+                   'Druid':'hedge magician',
+                   'Fighter':'reaper',
+                   'Monk':'skirmisher',
+                   'Paladin':'defender',
+                   'Ranger':'sharpshooter',
+                   'Rogue':'specialist',
+                   'Wizard':'hedge magician'
+                   }
+        spec_choice = raw_input("Which specialty would you like?\n"\
+                                "Choose from: \n"+str(specialties_list)+"\n\n"\
+                                "The recommended specialty for your "+self.classType+" is "+class_recommendation[self.classType].title()+": ").title()
+        print
+        while spec_choice not in specialties_list:
+                   spec_choice = raw_input("Which specialty would you like?\n"\
+                                "Choose from: \n"+str(specialties_list)+"\n\n"\
+                                "The recommended specialty for your "+self.classType+" is "+class_recommendation[self.classType].title()+": ").title()
+        print
+            
+        self.specialty = spec_choice
+        self.specialtyStory = specialties[self.specialty]['story']
+
+    #def populateFeats(self):
+        
+    
                 
                 
     
@@ -609,6 +682,8 @@ class Character(object):
         new_file.write("\n\n~~~~~~~~~ Traits ~~~~~~~~~\n")
         for i in self.traits:
             new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
+        new_file.write("\n\n~~~~~~~~~ Specialty: "+self.specialty+" ~~~~~~~~\n")
+        new_file.write("\n  "+self.specialtyStory+"\n")
         new_file.write("\n\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~\n")
         if self.backgroundProfession == '':
             pass
@@ -632,6 +707,9 @@ class Character(object):
         characterInfo += "\n\n~~~~~~~~~ Traits ~~~~~~~~~\n"
         for i in self.traits:
             characterInfo += "\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n"
+
+        characterInfo += "\n~~~~~~~~~ Specialty: "+self.specialty+" ~~~~~~~~\n"\
+                         "\n"+self.specialtyStory+"\n"
             
         characterInfo += "\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~\n"
         if self.backgroundProfession == '':
@@ -677,9 +755,10 @@ class Dwarf(Character):
             self.wis += 1
             self.traits['Armor Mastery'] = 'You are proficient with light and medium armor. While wearing medium or heavy armor, you gain a +1 bonus to Armor Class.'
             self.traits['Subrace'] = 'Mountain Dwarf'
-        #Choose a class
+        #Choose a class,background,skills,specialty
         self.chooseClass()
         self.backgroundAndSkills()
+        self.chooseSpecialties()
 
         print self.__str__()
   
@@ -717,9 +796,10 @@ class Elf(Character):
             self.traits['Fleet of Foot'] = "Your speed increases by 5 feet. (Already calculated)"
             self.traits['Mask of the Wild'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
             self.traits['Subrace'] = "Wood Elf"
-        #Choose a class
+        #Choose a class,background,skills,specialty
         self.chooseClass()
         self.backgroundAndSkills()
+        self.chooseSpecialties()
 
         print self.__str__()
         
@@ -755,9 +835,10 @@ class Halfling(Character):
             self.traits['Stout Resilience'] = 'You have advantage on saving throws against poison, and you have resistance against poison damage.'
             self.traits['Subrace'] = 'Stout'
 
-        #Choose a class
+        #Choose a class,background,skills,specialty
         self.chooseClass()
         self.backgroundAndSkills()
+        self.chooseSpecialties()
 
         print self.__str__()
         
@@ -780,9 +861,10 @@ class Human(Character):
         for i in abilities_list:
             self.stealthUpdate(i,1)
 
-        #Choose a class
+        #Choose a class,background,skills,specialty
         self.chooseClass()
         self.backgroundAndSkills()
+        self.chooseSpecialties()
 
         print self.__str__()
         
