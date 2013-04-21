@@ -13,20 +13,295 @@ benefit: You learn two of the following cantrips of your choice: light, mage han
 type: Martial Feat
 effect: Choose a Large or smaller creature within 5 feet of you. Contest your Strength against that creature's Strength. If you succeed, you push the creature up to 20 feet, provided you move with the creature along the same path. Doing so uses none of your regular movement, but you must be able to move.
 
-~~Improved Initiative - You make the most of the chaos that erupts at the start of a battle.
+~~Called Shot - You shoot or hurl a missile at a precise spot on an enemy's body
+type: Martial Feat
+prereq: 9th level, Dexterity 15 or higher
+benefit: You can use your action to prepare a called shot against a target you can see. On your next turn, if your first ranged attack against that creature is a hit, it becomes a critical hit.
 
-type: General Feat
+~~Charge - You can rush across the field of battle and still compose yourself enough to make an attack.
+benefit: As an action, you can move up to your speed and make a single melee attack. You cannot move any farther during the same turn.
+type: Martial Feat
 
-benefit: You gain a +4 bonus to initiative. If your initiative total is less than 10, treat it as 10.
+~~Charming Presence - You are captivating in your charm, bringing others under your thrall with mere words.
+type: Expert Feat
+prereq: 6th level, Charisma 15 or higher
+benefit: When you make a Charisma check to persuade a creature that can understand you, the creature is charmed by you if your check succeeds. This charm lasts for 1 hour. If you or your companions are hostile toward the creature in word or deed, the charm ends immediately, and you cannot use this feat on the creature again for 24 hours.
 
-~~First Strike - Your quick reflexes allow you to get the jump on your foes.
+~~Cleave - You can let the momentum from a deadly attack carry your weapon into another foe.
+type: Martial Feat
+benefit: Once on each of your turns, when you reduce a creature to 0 hit points or fewer with a melee attack, you can make a single melee attack against another creature within your reach as a part of the same action.
 
-type: General Feat
+~~Climb Sheer Surfaces - You scramble nimbly up even the most sheer walls and cliffs.prereq: Strength 11 or higher
+benefit: Climbing doesn't cost you extra feet of movement, and you have advantage on Strength checks to climb.
+type: Martial Feat
 
-benefit: On your first turn of combat, you have advantage on attack rolls against any creature that has not yet taken a turn during this encounter.
+~~Combat Reflexes - Your instincts take over when danger presents itself and can strike whenever you spot an opening.
+benefit: You can take an extra reaction each round, but no more than once per turn. The reaction can be used only to make an opportunity attack.
+type: Martial Feat
+
+~~Combat Superiority - You can protect your allies and deliver a punishing counterstrike.prereq: 9th level, Interposing Shield feat
+benefit: When you use the Interposing Shield feat, you can make a single melee attack against the attacking creature as part of the same reaction.
+type: Martal Feat
 
 ~~Covert Strike - When you dispatch a foe, you know how to make a hasty exit and vanish from sight.
-
 type: Martial Feat
 prereq: 9th Level, First Strike Feat
 benefit: Once on your turn, when you reduce a creature to 0 hit points or fewer with an attack, you can also attempt to hide as a part of the same action. If you have any movement left for this turn, you can use it to move before attempting to hide, and you must adhere to the normal restrictions for being able to hide.
+
+~~Defensive Ward - You can quickly conjure defensive wards that protect you and your allies from harmful magic.prereq: 9th level, the ability to cast at least one 1st-level spell
+benefit: When you or a creature within 25 feet of you makes a saving throw against a magical effect, you can use your reaction to give that creature advantage on that saving throw.
+type: Magic Feat
+
+~~Disarm Traps - You can disarm and otherwise nullify all kinds of traps.prereq: Dexterity 11 or higher
+benefit: You have proficiency with thieves' tools. When you use thieves' tools to attempt to disable a trap, you can add your skill die to the Dexterity check. Additionally, you do not trigger the trap if you fail your check by 5 or more.
+type: Expert Feat
+
+~~Disarming Attack - You strike a blow that also batters at your opponent's weapon.
+effect: As an action, you can make a single melee attack against a creature within 5 feet of you. If you hit, you can also make a Strength check, contested by the target’s Strength check, to disarm the target. If you succeed, the target drops one object in its space. If you have a hand free, you can pick up that object. If the creature is holding the object with two hands (or other appendages), it has advantages on the Strength check it makes to resist being disarmed.
+type: Martial Feat
+
+~~Distant Spell - You have learned how to cast touch spells at a distance.prereq: The ability to cast at least one spell
+benefit: Once per day when you cast a spell that normally requires you to touch a target, you can instead choose a target within 25 feet of you.
+type: Magic Feat
+
+~~Dual Wielding - You are skilled at fighting with two weapons at once—a light weapon in one hand and a heftier weapon in the other.
+benefit: When you fight with two melee weapons at the same time, one of them doesn't need to be a light weapon, provided you are proficient with both of the weapons.
+type: Martial Feat
+
+~~Durable - You are uncommonly tough.prereq: Constitution 11 or higher
+benefit: Whenever you roll a die to regain hit points by spending a Hit Die, you can roll twice and use the higher roll.
+type: General Feat
+
+~~Energy Admixture - You specialize in a particular type of magical energy. You can alter your spells to call forth that energy whenever you like.prereq: The ability to cast at least one spell
+benefit: When you gain this feat, choose a damage type: acid, cold, fire, lightning, or thunder. When you cast a spell that deals one of those damage types, you can cause half of the spell's damage to be its normal type and the other half to be the type you chose for this feat.
+type: Magic Feat
+
+~~Find Familiar - You have a familiar, a spirit that takes animal form to serve you.prereq: The ability to cast at least one 1st-level spell
+benefit: You can bond with a familiar by mastering and performing a special ritual, as described in the DnD Next manual. You can have only one familiar at a time. Your familiar acts independently of you, but it always obeys your commands. In combat, it has its own turns and rolls its own initiative. While you are within 100 feet of your familiar, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears for 1 round, and you also gain the benefits of any special senses that the familiar has. During this time, you are deaf and blind with regard to your own senses. Finally, while within 100 feet of your familiar, you can have it deliver a spell on your turn that requires touching a creature, so that it touches the creature on your behalf, provided nothing is preventing the familiar from taking actions. If the spell requires an attack roll, you use your attack modifier for the roll. The familiar cannot make attacks of its own. Choose a familiar. Each familiar has the same statistics, modified by the type you choose. (see manual)
+type: Magic Feat
+
+~~First Strike - Your quick reflexes allow you to get the jump on your foes.
+benefit: On your first turn of combat, you have advantage on attack rolls against any creature that has not yet taken a turn during this encounter.
+type: General Feat
+
+~~Hafted Weapon - You can strike with the blunt end of a polearm, treating it more like a quarterstaff.prereq: Proficiency with the glaive, halberd, or pike
+benefit: When you are wielding a glaive, a halberd, or a pike, the weapon functions as a double weapon that has a second end that deals 1d4 bludgeoning damage.
+type: Martial Feat
+
+~~Healing Initiate - You have learned the basics of magical healing.
+prereq: Wisdom 11 or higher
+benefit: You learn the cure minor wounds and resistance cantrips.
+type: Magic Feat
+
+~~Heighten Spell - You know how to modify your spells to make them harder to resist, or more accurate in seeking out their target.prereq: The ability to cast at least one spell
+benefit: Once per day, you can choose to gain advantage on a single attack roll made as part of a spell or to give one target disadvantage on any saving throws made against the spell.
+type: Magic Feat
+
+~~Herbalism - You have studied the medicinal and poisonous qualities of plants and can use that knowledge to create various remedies.prereq: Intelligence 11 or higher
+benefit: You can spend one hour to create up to three items, chosen in any combination from Antitoxin (25 gp), Healer's Kit(2 gp, 5 sp), Potion of Healing(25 gp). To create an item, you must expend material components (herbs, vials, cloth, and the like) worth the amount given for each item. Additionally, you can automatically determine by sight or smell whether an herb is poisonous.
+type: General Feat
+
+~~Hide in Shadows - You have learned to keep to the shadows and to see clearly within them.prereq: Dexterity 11 or higher
+benefit: You gain training in the Sneak skill. In addition, you gain the ability to hide in dim light and other lightly obscured areas, and you gain low-light vision with a range of 10 feet.
+type: Expert Feat
+
+~~Hold the Line - You can use your shield to stop oncoming enemies in their tracks.prereq: Proficiency with shields
+benefit: When a creature of your size or smaller moves within your reach while you are wielding a shield, you can use a reaction to cause the creature to end its movement for the turn.
+type: Martial Feat
+
+~~Improved Initiative - You make the most of the chaos that erupts at the start of a battle.
+type: General Feat
+benefit: You gain a +4 bonus to initiative. If your initiative total is less than 10, treat it as 10.
+
+~~Interposing Shield - You can disrupt an attack by bashing the attacker with your shield.prereq: Proficiency with shields
+benefit: While you are wielding a shield, you can use your reaction to impose disadvantage on the attack roll of a creature within 5 feet of you, provided the creature is attacking a target other than you.
+type: Martial Feat
+
+~~Iron Hide - You shrug off minor injuries with ease. 
+prereq: 9th level, Constitution 15 or higher
+benefit: You gain a +1 bonus to your AC.
+type: General Feat
+
+~~Lunge - You stretch out to strike at an enemy just out of your normal reach.
+benefit: As an action, you can make a single melee attack, and increase your reach for that attack by 5 feet.
+type: Martial Feat
+
+~~Magical Rejuvenation - You have mastered advanced magical healing techniques.prereq: 3rd level, Wisdom 11 or higher
+benefit: Once per day, you can cast cure light wounds or lesser restoration.
+type: Magic Feat
+
+~~Martial Arts - You have learned to fight using your body as a weapon.
+benefit: Your unarmed strike functions as a light finesse weapon with which you have proficiency. It deals 1d6 bludgeoning damage.
+type: Martial Feat
+
+~~Maximize Spell - You can alter your spells to get the maximum possible result out of the damage that they deal.prereq: The ability to cast at least one spell
+benefit: Once per day before you roll damage for a spell, you can maximize the damage, rather than rolling it.
+type: Magic Feat
+
+~~Mimic - You can expertly mimic a person's voice, mannerisms, and quirks.prereq: Charisma 11 or higher
+benefit: When making a Charisma check to bluff, you can perfectly mimic the sound of another humanoid's voice, as well as its physical motions and mannerisms. You can sustain this mimicry for as long as you wish. You must have observed the person previously to perform this mimicry.
+type: Expert Feat
+
+~~Open Locks - You have a knack for getting into things that others want to protect, even bypassing magical wards.
+prereq: Dexterity 11 or higher
+benefit: You have proficiency with thieves' tools. When you use thieves' tools to pick a lock, you can add your skill die to your Dexterity check to do so. Additionally, you can attempt to bypass magical locks using thieves' tools.
+type: Expert Feat
+
+~~Pick Pockets - You can secretly dip into the pockets, pouches, and packs of other creatures, using your light fingers to steal from them.
+prereq: Dexterity 11 or higher
+benefit: As an action, you can attempt to covertly take a stowed item off another creature. You make a Dexterity check to conceal an object, contested by your target's Wisdom check to spot. If your target wins the contest, you fail to retrieve the stowed item you sought and the creature notices your attempt. If you win the contest, you retrieve the stowed item you sought without alerting that creature.
+type: Expert Feat
+
+~~Polearm Training - You've been trained in the basics of using a polearm, and can use the lengthy weapon to turn the area around you into a whirlwind of violence.
+benefit: You gain proficiency with the glaive, the halberd, the pike, and the quarterstaff. You have advantage on opportunity attacks using these weapons.
+type: Martial Feat
+
+~~Precise Shot - You are skilled at timing and aiming ranged attacks.
+prereq: Dexterity 11 or higher
+benefit: You gain proficiency with shortbows and longbows. In addition, when you make a ranged attack, creatures within 5 feet of you don't provide cover to your target.
+type: Martial Feat
+
+~~Purge Magic - You know incantations that can free yourself or an ally of unwanted magic.
+prereq: 6th level, Intelligence or Wisdom 12 or higher, the ability to cast at least one spell
+benefit: You can use an action to cast the dispel magic spell on yourself or a friendly creature. You can use this benefit a number of times per day equal to your Intelligence or Wisdom modifier (whichever is higher).
+type: Magic Feat
+
+~~Read Lips - You can understand what another creature is saying from a distance.
+prereq: Wisdom 11 or higher
+benefit: If you can see a creature's face and you understand the language it's speaking, you can read the subject's lips.
+type: Expert Feat
+
+~~Relentless - Your unceasing assault makes it difficult for your target to continue evading your attacks.
+prereq: 9th level
+benefit: When you miss a creature with a melee attack, you have advantage on your next melee attack against that creature before the end of your next turn
+type: Martial Feat
+
+~~Resilience - You recover from your injuries at an unusually fast rate.
+prereq: Constitution 11 or higher
+benefit: Whenever you spend a Hit Die to regain hit points, you regain 2 extra hit points.
+type: General Feat
+
+~~Restore Life - You can use your superior healing techniques to restore life to the recently dead.
+prereq: 9th level, Healing Initiate feat
+benefit: You can spend 1 minute tending to a creature that died within the last minute and that has at least 1 Hit Die. The body must be intact and the creature has to have died as a result of taking damage. At the end of this time, the creature spends 1 Hit Die and returns to life, regaining hit points from spending a Hit Die as normal. You must have a healer's kit to use this feat. Using this feat expends 2 uses from the healer's kit.
+type: Expert Feat
+
+~~Riposte - You use your opponent's missteps as an opportunity to strike.
+prereq: 9th level, Seize the Advantage feat
+benefit: When you use the Seize the Advantage feat, you can also make a single melee attack against that creature as part of the same reaction, expending the advantage granted by that feat.
+type: Martial Feat
+
+~~Seize the Advantage - You can turn aside a blow with your weapon, using your opponent's momentum to your advantage.
+prereq: Dexterity 11 or higher
+benefit: When a creature within 5 feet of you misses you with a melee attack, you can use your reaction to gain advantage on your next attack against that creature before the end of your next turn.
+type: Martial Feat
+
+~~Shove Away - Your attack drives your opponent away from you, sending them reeling.
+benefit: As an action, you can make a single melee attack. If you hit, you can also make a Strength check, contested by the target’s Strength or Dexterity check, to push the target. If you succeed, you push the target 5 feet away from you, provided the target is no more than one size larger than you.
+type: Martial Feat
+
+~~Skill Focus - Your study and mastery of your skills grows deeper as you focus your effort.
+benefit: Choose one of your skills when you gain this feat. When you make an ability check using that skill, treat any d20 roll of 9 or less as a 10. SPECIAL: You can select this feat multiple times, but you must choose a different skill each time.
+type: Expert Feat
+
+~~Skill Supremacy - You are a master of a chosen skill.
+prereq: Skill Focus feat
+benefit: Choose a skill you chose for the Skill Focus feat. You have advantage on all ability checks using that skill. SPECIAL: You can select this feat multiple times, but you must choose a different skill each time.
+type: Expert Feat
+
+~~Sniper - You can make shots with precision by sacrificing stopping power.
+prereq: 6th level, Precise Shot feat
+benefit: You ignore half cover and three-quarters cover when making ranged attacks.
+type: Martial Feat
+
+~~Spring Attack - You make sudden, rapid movements to catch your enemy off guard.
+prereq: Dexterity 11 or higher
+benefit: As an action, you move up to 10 feet and make an attack at any point during the movement. This movement does not provoke opportunity attacks.
+type: Martial Feat
+
+~~Superior Footwork - You have excellent footwork, and cannot be knocked down in battle.
+prereq: Dexterity 11 or higher
+benefit: When you would be knocked prone, you can use your reaction to remain standing.
+type: Expert Feat
+
+~~Superior Skill Training - You have specialized training and experience that gives you an edge in certain situations.
+benefit: You gain two skills of your choice. SPECIAL - You can select this feat multiple times, but you must choose two different skills each time.
+type: Expert Feat
+
+~~Taunt - You know how to goad your enemies into attacking you, even when they wouldn't normally rise to the bait.
+prereq: Charisma 11 or higher
+benefit: As an action, choose a creature within 25 feet of you that can see or hear you, and contest your Charisma against its Wisdom. The creature automatically wins the contest if it is immune to being charmed. If the creature loses, it must use its movement on its next turn to move closer to you before using its action. The creature uses as much of its speed as it can to reach you and avoids dangerous terrain.
+type: Expert Feat
+
+~~Toughness - You are remarkably durable and can stand up to punishment that would send other people to death's door.
+prereq: Constitution 11 or higher
+benefit: You gain extra hit points equal to your level when you take this feat. For each level you gain after taking this feat, you gain 1 extra hit point.
+type: General Feat
+
+~~Track - You can follow the path that one or more creatures have taken.
+prereq: Wisdom 11 or higher
+benefit: You can spend 1 minute looking for signs of other creatures' passage. You detect if any creatures have passed through the immediate vicinity (100 feet around you) within the last 24 hours. You learn the number of creatures, their sizes, and the speed and direction they were traveling. Under certain circumstances, a Wisdom check is required to detect the signs of passage: if more than a day has passed since the creatures passed; if the creatures intentionally obscured their trail; if weather has obscured their trail, such as after hard rain, heavy snow, or wind-­‐blown sand; if the terrain makes discerning a trail difficult, such over a river or a solid rock shelf; if the area has been heavily traveled by manycreatures, such as along a road or inside a city
+type: Expert Feat
+
+~~Trap Sense - You know when a trap is about to spring, and rarely take the full force of any trap you encounter.
+benefit: You have advantage on saving throws against traps, and traps have disadvantage on their attack rolls against you.
+type: Expert Feat
+
+~~Trip Attack - You use your attack to drive your enemy to the ground.
+benefit: As an action, you can make a single melee attack. If you hit, you can also make a Strength check, contested by the target's Strength or Dexterity check, to knock the target down. If you succeed, the target falls prone. The target must be no more than one size category larger than you in order to knock it down using this feat.
+type: Martial Feat
+
+~~Tumbling Movement - When you move past your enemies on the battlefield, you tumble, roll and leap to make yourself a more difficult target.
+prereq: Dexterity 11 or higher
+benefit: Opportunity attacks against you have disadvantage.
+type: Expert Feat
+
+~~Two Weapon Defense - You can use the weapon you wield in your off hand to defend yourself.
+benefit: When you are wielding two weapons and you are proficient in both, you have a +1 bonus to AC. You never gain this bonus when you are wielding a shield (including a spiked shield).
+type: Martial Feat
+
+~~Two Weapon Strike - You can use both of your weapons to make it impossible for your enemy to easily dodge your attacks.
+prereq: 9th level, Dual Wielding feat
+benefit: If you hit the same creature using two-­‐ weapon fighting, you can add the relevant ability modifier to the damage of the second attack.
+type: Martial Feat
+
+~~Unflappable - You never let anything bother you, and always manage to put on a good face even when the odds are stacked against you.
+prereq: Charisma 11 or higher
+benefit: You ignore the effects of disadvantage when making Charisma checks.
+type: Expert Feat
+
+~~Use Magic Device - You have studied the use of magic items and know how to bypass many of their limitations and restrictions.
+prereq: Intelligence 11 or higher
+benefit: When you attempt to use a magic item that you normally cannot use because it requires you to be a member of a different class or race or to have spellcasting ability that you lack, you can make an Intelligence check (DC 10). If you succeed, you can use that magic item despite not meeting its requirements.
+type: Expert Feat
+
+~~Vault - You can spring and leap as well as any acrobat. 
+prereq: Strength 11 or higher
+benefit: Add 15 feet to the length of any long jump you make, or 5 feet to the height of any high jump.
+type: Expert Feat
+
+~~Warding Polearm - You can use your polearm to keep enemies at bay.
+prereq: 9th level
+benefit: While you are wielding a reach weapon with which you have proficiency, other creatures provoke opportunity attacks from you when they enter your reach.
+type: Martial Feat
+
+~~Weapon Mastery - Your skill with weapons has been honed over the course of many battles, allowing you to further refine your talents.
+benefit: When you attack with a weapon and roll its damage dice, roll an extra die of the same type, drop the lowest roll, and then add up the damage.
+type: Martial Feat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

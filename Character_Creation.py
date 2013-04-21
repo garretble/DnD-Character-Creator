@@ -773,15 +773,15 @@ class Character(object):
         characterInfo += "\n    ~~~~ Feats ~~~~\n"
         for i in range(1,self.level+1):
             if i == 1 or i%3 ==0:
-                characterInfo += "\n       Level "+str(i)+": "+self.feats[i]['name']+" "\
-                                 "("+self.feats[i]['type']+")\n"\
+                characterInfo += '\n       Level '+str(i)+': '+self.feats[i]['name']+' '\
+                                 '('+self.feats[i]['type']+')\n'\
                                  '                "'+self.feats[i]['description']+'"\n\n'
                 if 'prereq' in self.feats[i]:
-                    characterInfo += "                Prerequisite: "+self.feats[i]['prereq']+"\n"
+                    characterInfo += '                Prerequisite: '+self.feats[i]['prereq']+'\n'
                 if 'benefit' in self.feats[i]:
-                    characterInfo += "                Benefit: "+self.feats[i]['benefit']+"\n"
+                    characterInfo += '                Benefit: '+self.feats[i]['benefit']+'\n'
                 if 'effect' in self.feats[i]:
-                    characterInfo += "                Effect: "+self.feats[i]['effect']+"\n"
+                    characterInfo += '                Effect: '+self.feats[i]['effect']+'\n'
                                  
             
             
@@ -829,7 +829,7 @@ class Dwarf(Character):
             self.wis += 1
             self.traits['Armor Mastery'] = 'You are proficient with light and medium armor. While wearing medium or heavy armor, you gain a +1 bonus to Armor Class.'
             self.traits['Subrace'] = 'Mountain Dwarf'
-        #Choose a class,background,skills,specialty
+        #Choose a class,background,skills,specialty,feats
         self.chooseClass()
         self.backgroundAndSkills()
         self.chooseSpecialties()
@@ -871,11 +871,12 @@ class Elf(Character):
             self.traits['Fleet of Foot'] = "Your speed increases by 5 feet. (Already calculated)"
             self.traits['Mask of the Wild'] = 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.'
             self.traits['Subrace'] = "Wood Elf"
-        #Choose a class,background,skills,specialty
+        #Choose a class,background,skills,specialty,feats
         self.chooseClass()
         self.backgroundAndSkills()
         self.chooseSpecialties()
-
+        self.populateFeats()
+        
         print self.__str__()
         
     
@@ -910,10 +911,11 @@ class Halfling(Character):
             self.traits['Stout Resilience'] = 'You have advantage on saving throws against poison, and you have resistance against poison damage.'
             self.traits['Subrace'] = 'Stout'
 
-        #Choose a class,background,skills,specialty
+        #Choose a class,background,skills,specialty,feats
         self.chooseClass()
         self.backgroundAndSkills()
         self.chooseSpecialties()
+        self.populateFeats()
 
         print self.__str__()
         
@@ -936,10 +938,11 @@ class Human(Character):
         for i in abilities_list:
             self.stealthUpdate(i,1)
 
-        #Choose a class,background,skills,specialty
+        #Choose a class,background,skills,specialty,feats()
         self.chooseClass()
         self.backgroundAndSkills()
         self.chooseSpecialties()
+        self.populateFeats()
 
         print self.__str__()
         

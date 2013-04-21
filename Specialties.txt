@@ -49,7 +49,8 @@ Level 9: Relentless
 
 Level 1: Precise Shot
 Level 3: Weapon Mastery
-Level 6: SniperLevel 9: Called Shot
+Level 6: Sniper
+Level 9: Called Shot
 
 ~~Skirmisher - The best way to avoid being a target is to never stand still. You know that being fast, mobile, and slippery is sure to guarantee your enduring safety. Likewise, your speed catches your enemies off-guard, allowing you to slip in, strike, and then retreat before your enemies have a chance to pin you down. You might be a scout, used to traveling over long distances and evading danger instead of confronting it head-on. Alternatively, you might have lived as a street urchin, where your ability to move quickly through dangerous areas saved you from being snatched up by the city watch, or worse, having your meager possessions stolen by other street toughs.
 
