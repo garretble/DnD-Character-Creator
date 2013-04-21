@@ -96,6 +96,8 @@ skills = {'administer first aid': 'wis',
 #global dict for specialties (is filled in the chooseSpecialty() method)
 specialties = {}
 
+#global dict for feats
+feats = {}
         
     
 class Character(object):
@@ -120,7 +122,7 @@ class Character(object):
         self.skills = ''
         self.specialty = ''
         self.specialtyStory = ''
-        self.feats = []
+        self.feats = {}
         print
 
         #classMods for updating hp and other stats when leveling up, as determined by traits
@@ -660,7 +662,51 @@ class Character(object):
         self.specialty = spec_choice
         self.specialtyStory = specialties[self.specialty]['story']
 
-    #def populateFeats(self):
+    def populateFeats(self):
+        """
+        Populates the feats dict and adds correct feat to self.feats
+        """
+        def createFeats(fileName):
+            """
+            Populates feats dict
+            """
+            featsFile = open('Feats.txt','r')
+            current_feat = ''
+
+            for line in featsFile:
+                if line == "\n":
+                    pass
+                elif line[:2] == "~~":
+                    current_feat = line[2:line.index("-")-1]
+                    feats[current_feat] = {}
+                    feats[current_feat]['description'] = line[line.index("-")+2:-1]
+                elif line[:6] == "prereq":
+                    feats[current_feat]['prereq'] = line[line.index(":")+2:-1]
+                elif line[:7] == "benefit":
+                    feats[current_feat]['benefit'] = line[line.index(":")+2:-1]
+                elif line[:4] == "type":
+                    feats[current_feat]['type'] = line[line.index(":")+2:-1]
+                elif line[:6] == "effect":
+                    feats[current_feat]['effect'] = line[line.index(":")+2:-1]
+            featsFile.close()
+
+        createFeats('Feats.txt')
+
+        
+        for i in range(1,self.level+1):
+            if i == 1 or i%3 == 0:
+                current_feat = specialties[self.specialty][i]
+                self.feats[i] = {}
+                self.feats[i]['name'] = current_feat
+                self.feats[i]['description'] = feats[current_feat]['description']
+                self.feats[i]['type'] = feats[current_feat]['type']
+                if 'benefit' in feats[current_feat]:
+                    self.feats[i]['benefit'] = feats[current_feat]['benefit']
+                if 'effect' in feats[current_feat]:
+                    self.feats[i]['effect'] = feats[current_feat]['effect']
+                if 'prereq' in feats[current_feat]:
+                    self.feats[i]['prereq'] = feats[current_feat]['prereq']
+
         
     
                 
@@ -684,6 +730,19 @@ class Character(object):
             new_file.write("\n  ~~"+i+"~~\n    "+str(self.traits[i])+"\n")
         new_file.write("\n\n~~~~~~~~~ Specialty: "+self.specialty+" ~~~~~~~~\n")
         new_file.write("\n  "+self.specialtyStory+"\n")
+        new_file.write("\n    ~~~~ Feats ~~~~\n")
+        for i in range(1,self.level+1):
+            if i == 1 or i%3 == 0:
+                new_file.write("\n       Level "+str(i)+": "+self.feats[i]['name']+' '\
+                               "("+self.feats[i]['type']+")\n"\
+                               '                "'+self.feats[i]['description']+'"\n\n')
+                if 'prereq' in self.feats[i]:
+                    new_file.write("                Prerequisite: "+self.feats[i]['prereq']+"\n")
+                if 'benefit' in self.feats[i]:
+                    new_file.write("                Benefit: "+self.feats[i]['benefit']+"\n")
+                if 'effect' in self.feats[i]:
+                    new_file("                Effect: "+self.feats[i]['effect']+"\n")
+                             
         new_file.write("\n\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~\n")
         if self.backgroundProfession == '':
             pass
@@ -710,6 +769,21 @@ class Character(object):
 
         characterInfo += "\n~~~~~~~~~ Specialty: "+self.specialty+" ~~~~~~~~\n"\
                          "\n"+self.specialtyStory+"\n"
+
+        characterInfo += "\n    ~~~~ Feats ~~~~\n"
+        for i in range(1,self.level+1):
+            if i == 1 or i%3 ==0:
+                characterInfo += "\n       Level "+str(i)+": "+self.feats[i]['name']+" "\
+                                 "("+self.feats[i]['type']+")\n"\
+                                 '                "'+self.feats[i]['description']+'"\n\n'
+                if 'prereq' in self.feats[i]:
+                    characterInfo += "                Prerequisite: "+self.feats[i]['prereq']+"\n"
+                if 'benefit' in self.feats[i]:
+                    characterInfo += "                Benefit: "+self.feats[i]['benefit']+"\n"
+                if 'effect' in self.feats[i]:
+                    characterInfo += "                Effect: "+self.feats[i]['effect']+"\n"
+                                 
+            
             
         characterInfo += "\n~~~~~~~~~ Background: "+self.background+" ~~~~~~~~\n"
         if self.backgroundProfession == '':
@@ -759,6 +833,7 @@ class Dwarf(Character):
         self.chooseClass()
         self.backgroundAndSkills()
         self.chooseSpecialties()
+        self.populateFeats()
 
         print self.__str__()
   

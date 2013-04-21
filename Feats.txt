@@ -1,0 +1,32 @@
+~~Ambush - You strike with deadly precision when you catch them unaware.
+prereq: Dexterity 11 or higher
+benefit: When you start your turn hidden from a creature, you have advantage on your first attack roll against that creature during the same turn, even if you are revealed before the attack. In addition, if you make a ranged attack against a creature from which you are hidden and you miss, the attack does not reveal your location.
+type: General Feat
+
+~~Arcane Dabbler - You know some of the basics of magic use, and can cast some rudimentary spells.
+
+type: Magic Feat
+prereq: Intelligence 11 or higher
+benefit: You learn two of the following cantrips of your choice: light, mage hand, minor illusion, prestidigitation, and read magic.
+
+~~Bull Rush - You throw yourself into a full-fledged shove, driving your opponent across the battlefield.
+type: Martial Feat
+effect: Choose a Large or smaller creature within 5 feet of you. Contest your Strength against that creature's Strength. If you succeed, you push the creature up to 20 feet, provided you move with the creature along the same path. Doing so uses none of your regular movement, but you must be able to move.
+
+~~Improved Initiative - You make the most of the chaos that erupts at the start of a battle.
+
+type: General Feat
+
+benefit: You gain a +4 bonus to initiative. If your initiative total is less than 10, treat it as 10.
+
+~~First Strike - Your quick reflexes allow you to get the jump on your foes.
+
+type: General Feat
+
+benefit: On your first turn of combat, you have advantage on attack rolls against any creature that has not yet taken a turn during this encounter.
+
+~~Covert Strike - When you dispatch a foe, you know how to make a hasty exit and vanish from sight.
+
+type: Martial Feat
+prereq: 9th Level, First Strike Feat
+benefit: Once on your turn, when you reduce a creature to 0 hit points or fewer with an attack, you can also attempt to hide as a part of the same action. If you have any movement left for this turn, you can use it to move before attempting to hide, and you must adhere to the normal restrictions for being able to hide.
