@@ -1,7 +1,7 @@
 DnD-Character-Creator
 =====================
 
-A simple character creator for DnD Next (Work in Progress)
+A simple character creator for DnD Next (Work in Progress, runs on Python 2.7)
 
 This program will make a simple character and give you stats, traits, class, background, skills, and feats
 for the character. From there, you will need to select your gear and add up your AC score and gold.
