@@ -15,7 +15,7 @@ Speed:
 Lucky:
 When you roll a natural 1 on an attack roll, ability check, or saving throw, you can recall the die and must use the new roll.
 
-Fealress:
+Fearless:
 You have advantage on saving throws against being frightened.
 
 Halfling Nimbleness:
