@@ -19,14 +19,14 @@ Level 3: Find Familiar
 Level 6: Arcane Dabbler
 Level 9: Defensive Ward
 
-~~Metamagician - You know how to manipulate magical energy to alter your spells. Many spellcasters train in the art of metamagic in order to get the most out of their spells. You understand better than anyone else how to twist your spells to get the desired effect, surprising your foes with your versatility. You likely spent some time studying magical theory, for example as a student in a wizard’s academy or a scholar in a magical library. Alternatively, you might have learned how to manipulate your spells through painful trial and error, leaving you with scars of failed experiments.
+~~Metamagician - You know how to manipulate magical energy to alter your spells. Many spellcasters train in the art of metamagic in order to get the most out of their spells. You understand better than anyone else how to twist your spells to get the desired effect, surprising your foes with your versatility. You likely spent some time studying magical theory, for example as a student in a wizard's academy or a scholar in a magical library. Alternatively, you might have learned how to manipulate your spells through painful trial and error, leaving you with scars of failed experiments.
 
 Level 1: Distant Spell
 Level 3: Energy Admixture
 Level 6: Maximize Spell
 Level 9: Heighten Spell
 
-~~Mystical Healer - Having studied the healing arts, you work to ease suffering, mend wounds, and cure sickness. You know how to conjure magical healing to seal wounds and purge the body of poisons. Your ministrations bring hope to the hopeless, health to the sick, and perhaps even life to the dying. You might have been an apprentice to a village herb gatherer, a wise one who tended to the villagers’ ills. Or perhaps you learned at the side of a wealthy family’s personal physician. You could have served as a medic in a military company, aiding injured soldiers while battle raged around you. Or perhaps you are an initiate of a deity such as the Lifegiver, charged with offering healing wherever it is needed.
+~~Mystical Healer - Having studied the healing arts, you work to ease suffering, mend wounds, and cure sickness. You know how to conjure magical healing to seal wounds and purge the body of poisons. Your ministrations bring hope to the hopeless, health to the sick, and perhaps even life to the dying. You might have been an apprentice to a village herb gatherer, a wise one who tended to the villagers' ills. Or perhaps you learned at the side of a wealthy family's personal physician. You could have served as a medic in a military company, aiding injured soldiers while battle raged around you. Or perhaps you are an initiate of a deity such as the Lifegiver, charged with offering healing wherever it is needed.
 
 Level 1: Healing Initiate
 Level 3: Magical Rejuvenation
@@ -36,16 +36,18 @@ Level 9: Restore Life
 ~~Polearm Master - Polearms, such as glaives, halberds, and other reach weapons, are typically the weapon of choice for well-armed masses of infantry. Their length allows tightly packed ranks of warriors to deliver many attacks at once, and they also excel at creating defensive formations against larger creatures. You have trained with polearms, likely as part of a militia or other military unit, and have learned to apply what you know to the small, desperate skirmishes that adventurers face. Many adventuring fighters with a background as mercenaries practice this specialty.
 
 Level 1: Polearm Training
-Level 3: Hafted WeaponLevel 6: Two-­‐Weapon Defense
+Level 3: Hafted Weapon
+Level 6: Two-Weapon Defense
 Level 9: Warding Polearm
 
 ~~Reaper - Some warriors rely on elegance and speed. You prefer using the biggest weapon you can find to deliver the most devastating blows possible. You likely trained in a mercenary company or other group that focused on battling large creatures. Hill giants and ogres rely on their endurance to overwhelm their foes. Your training has taught you to bring such foes down.
 
 Level 1: Weapon Mastery
-Level 3: CleaveLevel 6: Combat Reflexes
+Level 3: Cleave
+Level 6: Combat Reflexes
 Level 9: Relentless
 
-~~Sharpshooter - Sharpshooters have keen eyes and steady hands, letting them hit the most difficult targets. They have perfected their techniques with ranged weapons, letting them launch missile after missile with incredible speed and precision. While many sharpshooters favor bows, some use thrown weapons, slings, and even crossbows. As a sharpshooter, you may be an archer in the king’s army, a crossbow-toting assassin ever-ready for assignment, or a hunter whose life and livelihood depend on your ability to bring down prey with a streaking arrow.
+~~Sharpshooter - Sharpshooters have keen eyes and steady hands, letting them hit the most difficult targets. They have perfected their techniques with ranged weapons, letting them launch missile after missile with incredible speed and precision. While many sharpshooters favor bows, some use thrown weapons, slings, and even crossbows. As a sharpshooter, you may be an archer in the king's army, a crossbow-toting assassin ever-ready for assignment, or a hunter whose life and livelihood depend on your ability to bring down prey with a streaking arrow.
 
 Level 1: Precise Shot
 Level 3: Weapon Mastery
@@ -55,14 +57,17 @@ Level 9: Called Shot
 ~~Skirmisher - The best way to avoid being a target is to never stand still. You know that being fast, mobile, and slippery is sure to guarantee your enduring safety. Likewise, your speed catches your enemies off-guard, allowing you to slip in, strike, and then retreat before your enemies have a chance to pin you down. You might be a scout, used to traveling over long distances and evading danger instead of confronting it head-on. Alternatively, you might have lived as a street urchin, where your ability to move quickly through dangerous areas saved you from being snatched up by the city watch, or worse, having your meager possessions stolen by other street toughs.
 
 Level 1: ChargeLevel 3: Tumbling Movement
-Level 6: Spring AttackLevel 9: Evasive Movement
+Level 6: Spring Attack
+Level 9: Evasive Movement
 
 ~~Skulker - A subtle approach sometimes is the best way to deal with a powerful opponent or a touchy situation. Why trouble the giants guarding an enormous ruby when you can slip in and take it without disturbing them? Your approach makes things easier for everyone. You're a master of stealth, hiding in circumstances that others would find impossible and learning to avoid the common mistakes that scouts and sneak-thieves make to give themselves away. The life of an adventurer is probably not all that different from what you did before. You might have been a scout, sneaking up on enemy forces to learn details of their movements or sabotage their supplies. Perhaps you were a messenger tasked with crossing dangerous regions where it was better to avoid predators than to fight them. Or you might have been a pickpocket or a spy, using your stealth for unsavory ends.
 
-Level 1: Hide in ShadowsLevel 3: AmbushLevel 6: Skill Focus (Sneak)
-Level 9: Skill Supremacy (Sneak)
+Level 1: Hide in Shadows
+Level 3: Ambush
+Level 6: Skill Focus(Sneak)
+Level 9: Skill Supremacy(Sneak)
 
-~~Specialist - This specialty represents perhaps the broadest range of characters. While others allow their skills to grow organically, you make a point of mastering your skills. As you progress along this path, you have the opportunity to learn more skills and to increase your proficiency with those you have. Think about what environment might have fostered this devotion. Are you a dabbler in many varied skills, or deeply invested in a few key skills? Are you a sage seeking to increase the breadth and depth of your knowledge? Or perhaps you’re a charlatan who wants to be able to convincingly adopt many new identities.
+~~Specialist - This specialty represents perhaps the broadest range of characters. While others allow their skills to grow organically, you make a point of mastering your skills. As you progress along this path, you have the opportunity to learn more skills and to increase your proficiency with those you have. Think about what environment might have fostered this devotion. Are you a dabbler in many varied skills, or deeply invested in a few key skills? Are you a sage seeking to increase the breadth and depth of your knowledge? Or perhaps you're a charlatan who wants to be able to convincingly adopt many new identities.
 
 Level 1: Superior Skill Training
 Level 3: Superior Skill Training
